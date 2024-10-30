@@ -1,0 +1,50 @@
+version: '3.8'
+services:
+  app:
+    image: php:8.1-fpm
+    container_name: ecommerce_uoc
+    working_dir: /var/www/html
+    volumes:
+      - ./:/var/www/html
+    networks:
+      - ecommerce_network
+    ports:
+      - "9000:9000"
+    depends_on:
+      - db
+
+  webserver:
+    image: nginx:alpine
+    container_name: php_webserver
+    volumes:
+      - ./:/var/www/html
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d
+    ports:
+      - "80:80"
+    depends_on:
+      - app
+    networks:
+      - ecommerce_network
+
+  db:
+    image: mysql:5.7
+    container_name: php_db
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - dbdata:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - ecommerce_network
+
+networks:
+  ecommerce_network:
+    driver: bridge
+
+volumes:
+  dbdata:
+    driver: local

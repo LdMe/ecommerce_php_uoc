@@ -1,1 +1,2 @@
-# ecommerce_php_uoc
+# Proyecto E-commerce uoc php
+
