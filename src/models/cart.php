@@ -15,3 +15,7 @@ function addToCart($product_id, $quantity) {
     $cart[$product_id] = $quantity;
     saveCart($cart);
 }
+
+function deleteCart() {
+    setcookie('cart','', time() -0);
+}

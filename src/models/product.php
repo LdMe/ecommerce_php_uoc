@@ -10,10 +10,18 @@ function getProductById($id, $language_id) {
     $db = new App\Config\Database();
     return $db->query("SELECT * FROM product_with_language WHERE product_id =? AND language_id = ?",[$id,$language_id])[0];  
 }
+
+function getProductsByIds($ids, $language_id) {
+    $db = new App\Config\Database();
+    $placeholders = str_repeat('?,', count($ids) - 1) . '?';
+    $values = array_merge($ids,[$language_id]);
+    return $db->query("SELECT * FROM product_with_language WHERE product_id IN ($placeholders) AND language_id = ?",$values);
+}
 function getProductsByName($name , $language_id) {
     $db = new App\Config\Database();
     return $db->query("SELECT * FROM product_with_language WHERE name LIKE '%?%' AND language_id = ?",[$name,$language_id]);
 }
+
 
 function getProductsByCategory($category, $language_id) {
     $db = new App\Config\Database();
