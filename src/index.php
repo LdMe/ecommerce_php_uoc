@@ -6,6 +6,7 @@ require_once "./models/text.php";
 require_once "./components/navbar.php";
 require_once "./components/languageSelector.php";
 require_once "./config/language.php";
+require_once "./models/client.php";
 
 
 $products = getProducts( $language_id );
@@ -13,7 +14,8 @@ $category_id = $_GET['category_id'] ?? 0;
 if ($category_id > 0) {
     $products = getProductsByCategory($category_id,$language_id);
 }
-
+$navbar = getNavbar( $language_id);
+$client = getLoggedInClient();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,17 +24,21 @@ if ($category_id > 0) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="/public/styles.css">
 </head>
 
 <body>
+    <?php echo $navbar; ?>
     <?php echo getLanguageSelector( $language_id); ?>
     <h1>
         <?php echo getTranslation("main-page-title",$language_id); ?>
     </h1>
+    <?php if(!empty($client)){ ?>
+    <p>
+        <?php echo getTranslation("greeting",$language_id); ?>, <?php echo $client['name']; ?>!
+    </p>
+    <?php } ?>
     <h2><?php echo getTranslation("product-category",$language_id); ?></h2>
     
-    <?php echo getNavbar( $language_id); ?>
     <section class="product-list">
         <?php
         foreach ($products as $product) {

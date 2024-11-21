@@ -1,11 +1,14 @@
 <?php
 require_once "./models/category.php";
 require_once "./models/text.php";
+require_once "./models/cart.php";
 
 function getNavbar( $language_id) {
     $categories = getCategories( $language_id );
+    $totalProducts = getTotalCartProducts();
     ob_start();
     ?>
+    <link rel="stylesheet" href="/public/styles.css">
     <nav>
         <ul>
             <li>
@@ -23,6 +26,7 @@ function getNavbar( $language_id) {
             <li>
                 <a href="/cart.php">
                     <?php echo getTranslation("cart", $language_id); ?>
+                    <span class="badge">x<?php echo $totalProducts; ?></span>
                 </a>
             </li>
         </ul>

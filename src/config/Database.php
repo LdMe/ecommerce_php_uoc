@@ -41,4 +41,12 @@ class Database {
         $stmt->execute($params);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    public function execute($sql, $params = array()) {
+        $stmt = $this->conn->prepare($sql);
+        return $stmt->execute($params);
+    }
+
+    public function getLastInsertId() {
+        return $this->conn->lastInsertId();
+    }
 }

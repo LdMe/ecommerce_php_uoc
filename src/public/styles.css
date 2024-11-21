@@ -18,3 +18,12 @@
 .product-card img {
     width: 100%;
 }
+
+.cart-list td, th {
+    width: 15%;
+    text-align: center;
+}
+
+.cart-product-card img {
+    width: 50%;
+}

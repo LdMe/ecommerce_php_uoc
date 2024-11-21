@@ -10,7 +10,7 @@ $id = $_GET['id'] ?? 0;
 if ($id > 0) {
     $product = getProductById($id, $language_id);
 }
-
+$navbar = getNavbar( $language_id);
 ?>
 
 <!DOCTYPE html>
@@ -21,7 +21,7 @@ if ($id > 0) {
     <title>Document</title>
 </head>
 <body>
-    <?php echo getNavbar( $language_id); ?>
+    <?php echo $navbar; ?>
     <h1>
         <?php echo $product['name']; ?>
     </h1>
@@ -34,8 +34,8 @@ if ($id > 0) {
     <img src=<?php echo $product['image']; ?> class='product-image' alt=<?php echo $product['name']; ?>>    
     <form action="/cart.php" method="POST">
         <input type="hidden" name="product_id" value="<?php echo $product['product_id']; ?>">
-        <input type="number" name="quantity" value="1">
-        <button type="submit">Add to cart</button>
+        <input type="number" name="quantity" value="1" min="1">
+        <button type="submit"><?php echo getTranslation("cart-product-add", $language_id); ?></button>
     </form>
 
     
