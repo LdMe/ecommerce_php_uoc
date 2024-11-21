@@ -3,14 +3,20 @@ services:
   app:
     image: ecommerce_php
     build: .
-    container_name: ecommerce_uoc
+    container_name: ${APP_HOST}
     working_dir: /var/www/html
     volumes:
       - ./src:/var/www/html
     networks:
       - ecommerce_network
     ports:
-      - "9000:9000"
+      - 9000:9000
+    environment:
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
     depends_on:
       - db
 
@@ -21,7 +27,7 @@ services:
       - ./src:/var/www/html
       - ./docker/nginx/conf.d:/etc/nginx/conf.d
     ports:
-      - "80:80"
+      - 80:80
     depends_on:
       - app
     networks:
@@ -29,19 +35,18 @@ services:
 
   db:
     image: mysql:8.0
-    container_name: php_db
+    container_name: ${DB_HOST}
     environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
     volumes:
       #- db/data:/var/lib/mysql
-      #- ./database/conf/mycustom.cnf:/etc/mysql/conf.d/custom.cnf:ro
+      - ./db/conf/mycustom.cnf:/etc/mysql/conf.d/custom.cnf:ro
       - ./db/scripts:/docker-entrypoint-initdb.d:ro
-    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     ports:
-      - "3310:3306"
+      - ${DB_PORT}:3306
     networks:
       - ecommerce_network
 

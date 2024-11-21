@@ -4,13 +4,7 @@ require_once "./components/navbar.php";
 require_once "./config/language.php";
 require_once "./config/Database.php";
 require_once "./models/product.php";
-/*
-<form action="/cart.php" method="POST">
-        <input type="hidden" name="product_id" value="<?php echo $product['product_id']; ?>">
-        <input type="number" name="quantity" value="1">
-        <button type="submit">Add to cart</button>
-    </form>
-    */
+
 $product_id = $_POST['product_id'] ?? 0;
 $quantity = $_POST['quantity'] ?? 0;
 if ($product_id > 0 && $quantity > 0) {
@@ -19,14 +13,7 @@ if ($product_id > 0 && $quantity > 0) {
 }
 
 $cart = getCart();
-$product_ids = array_keys($cart);
-echo implode(",", $product_ids);
-$products = getProductsByIds($product_ids, $language_id);
-echo "<br>";
-echo count($products);
-foreach ($products as &$product) {
-    $product['quantity'] = $cart[$product['product_id']];
-}
+$products = formatProducts($cart,$language_id);
 ?>
 
 <!DOCTYPE html>
@@ -38,11 +25,20 @@ foreach ($products as &$product) {
 </head>
 <body>
     <?php echo getNavbar( $language_id); ?>
-    <h1>Cart</h1>
+    <h1><?php getTranslation("cart",$language_id);?></h1>
     <ul>
         <?php foreach ($products as $product): ?>
             <li>
-                <?php echo $product['name']; ?> x <?php echo $product['quantity']; ?> <?php echo $product['price'] / 100; ?>€
+                <?php echo $product['name']; ?> x <?php echo $product['quantity']; ?> <?php echo $product['price'] / 100; ?>€ -> <?php echo $product['price'] / 100 * $product['quantity'];?>€
+                <form action="/" method="POST">
+                    <input type="hidden" name="product_id" value=<?php echo $product['product_id']; ?>>
+                    <input type="number" name="quantity" value=<?php echo $product['quantity']; ?>>
+                    <button type="submit"><?php echo getTranslation("cart-add-more", $language_id); ?></button>
+                </form>
+                <form action="/" method="POST">
+                    <input type="hidden" name="product_id" value=<?php echo $product['product_id']; ?>>
+                    <button type="submit"><?php echo getTranslation("delete", $language_id); ?></button>
+                </form>
             </li>
         <?php endforeach; ?>
     

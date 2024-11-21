@@ -15,11 +15,12 @@ class Database {
 
     public function __construct() {
         $this->host = getenv('DB_HOST') ?: 'php_db';
-        $this->port = getenv('DB_PORT') ?: '3306';
+        $this->port =  '3306';
         $this->dbName = getenv('DB_NAME') ?: 'ecommerce';
         $this->username = getenv('DB_USER') ?: 'root';
         $this->password = getenv('DB_PASSWORD') ?: '1234';
         $this->connect();
+
     }
 
     public function connect() {

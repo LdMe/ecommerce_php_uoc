@@ -84,7 +84,7 @@ INSERT INTO purchase_status_has_language (purchase_status_id, language_id, name)
 (3, 3, 'Completat'),
 (3, 4, 'Completed');
 
-INSERT INTO text (text_id) VALUES ("main-page-title"), ("main-page-description"),("product-category"),("category-all"),("product-more-info"),("cart");
+INSERT INTO text (text_id) VALUES ("main-page-title"), ("main-page-description"),("product-category"),("category-all"),("product-more-info"),("cart"),("delete");
 
 INSERT INTO text_has_language (text_id, language_id, content) VALUES
 ("main-page-title", 1, "Mercado Orgánico"),
@@ -115,5 +115,10 @@ INSERT INTO text_has_language (text_id, language_id, content) VALUES
 ("cart", 1, "Carrito"),
 ("cart", 2, "Saskia"),
 ("cart", 3, "Cistella"),
-("cart", 4, "Cart");
+("cart", 4, "Cart"),
+
+("delete",1, "Eliminar"),
+("delete",2, "Ezabatu"),
+("delete",3, "Eliminar"),
+("delete",4, "Delete")
 ;
