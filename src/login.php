@@ -2,7 +2,6 @@
 <?php
 require_once "./components/navbar.php";
 require_once "./config/language.php";
-require_once "./config/Database.php";
 
 $labels = [
     "email" => getTranslation("email", $language_id),

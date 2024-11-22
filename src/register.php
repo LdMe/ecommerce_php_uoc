@@ -2,7 +2,6 @@
 
 require_once "./models/text.php";
 require_once "./config/language.php";
-require_once "./config/Database.php";
 
 $labels = [
     "name" => getTranslation("name", $language_id),

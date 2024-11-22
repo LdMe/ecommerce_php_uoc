@@ -1,11 +1,13 @@
 <?php
-require_once "./models/category.php";
-require_once "./models/text.php";
-require_once "./models/cart.php";
+require_once "models/category.php";
+require_once "models/text.php";
+require_once "models/cart.php";
 
 function getNavbar( $language_id) {
-    $categories = getCategories( $language_id );
-    $totalProducts = getTotalCartProducts();
+    $categoryModel = new Category();
+    $categories = $categoryModel->getCategories( $language_id );
+    $cart = new Cart(  );
+    $totalProducts = $cart->getTotalProducts( );
     ob_start();
     ?>
     <link rel="stylesheet" href="/public/styles.css">

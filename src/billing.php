@@ -1,13 +1,13 @@
 <?php
 
-require_once "./config/Database.php";
-require_once "./models/client.php";
-require_once "./models/text.php";
-require_once "./config/language.php";
-require_once "./models/billing.php";
-require_once "./components/navbar.php";
+require_once "models/client.php";
+require_once "models/text.php";
+require_once "config/language.php";
+require_once "models/billing.php";
+require_once "components/navbar.php";
 
-$user = getLoggedInClient();
+$clientModel = new Client();
+$client = $clientModel->getLoggedInClient();
 $labels = [
     "email" => getTranslation("email", $language_id),
     "address" => getTranslation("address", $language_id),
@@ -19,16 +19,17 @@ $values = [
     "phone" => "",
     "client_id" => ""
 ];
-$client_id = getClientId();
+$client_id = $clientModel->getLoggedInClientId();
 if (isset($client_id)) {
-    $lastBilling = getLastBilling($client_id);
+    $billingModel = new Billing();
+    $lastBilling = $billingModel->getLastByClient($client_id);
     $values = [
         "email" => $lastBilling['email'] ?? "",
         "address" => $lastBilling['address'] ?? "",
         "phone" => $lastBilling['tel'] ?? "",
         "client_id" => $lastBilling['client_id'] ?? ""
     ];
-    $billings = getBilling($client_id);
+    $billings = $billingModel->getByClient($client_id);
 }
 $navbar = getNavbar( $language_id);
 ?>
@@ -45,7 +46,7 @@ $navbar = getNavbar( $language_id);
     <?php echo $navbar; ?>
     <h1><?php echo getTranslation("billing", $language_id); ?></h1>
     <?php
-    if (empty($user)) {
+    if (empty($client)) {
         ?>
         <a href="/register.php?redirect=billing.php"><?php echo getTranslation("register-billing-title", $language_id); ?></a>
         <?php

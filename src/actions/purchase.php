@@ -1,13 +1,14 @@
 <?php
-require "./config/Database.php";
+
 require "./models/client.php";
 
-$client_id  = getClientId();
+$clientModel = new Client();
+$client_id  = $clientModel->getLoggedInClientId();
 if(!isset($client_id)){
     header("Location: /");
 }
-
-$lastBilling = getLastBilling($client_id);
+$billingModel = new Billing();
+$lastBilling = $billingModel->getLastByClient($client_id);
 if(empty($lastBilling)){
     header("Location: /billing.php");
 }

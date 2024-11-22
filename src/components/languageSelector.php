@@ -2,7 +2,8 @@
 require_once "./models/language.php";
 
 function getLanguageSelector( $language_id) {
-    $languages = getLanguages();
+    $languageModel = new Language() ;
+    $languages =$languageModel->getLanguages();
     ob_start();
     ?>
     <form action="/" method="GET">

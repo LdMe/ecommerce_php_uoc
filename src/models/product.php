@@ -1,33 +1,38 @@
 <?php
 
+require_once "models/baseModel.php";
 
 
 
-use App\Config\Database;
 
+class Product extends BaseModel
+{
+    
 
-function getProducts($language_id) {
-    $db = new Database();
-    return $db->query("SELECT * FROM product_with_language WHERE language_id = ?",[$language_id]);
-}
-function getProductById($id, $language_id=1) {
-    $db = new Database();
-    return $db->query("SELECT * FROM product_with_language WHERE product_id =? AND language_id = ?",[$id,$language_id])[0];  
-}
+    public function getAll($language_id)
+    {
+        return $this->db->query("SELECT * FROM product_with_language WHERE language_id = ?", [$language_id]);
+    }
 
-function getProductsByIds($ids, $language_id) {
-    $db = new Database();
-    $placeholders = str_repeat('?,', count($ids) - 1) . '?';
-    $values = array_merge($ids,[$language_id]);
-    return $db->query("SELECT * FROM product_with_language WHERE product_id IN ($placeholders) AND language_id = ?",$values);
-}
-function getProductsByName($name , $language_id) {
-    $db = new Database();
-    return $db->query("SELECT * FROM product_with_language WHERE name LIKE '%?%' AND language_id = ?",[$name,$language_id]);
-}
+    public function getById($id, $language_id=1)
+    {
+        return $this->db->query("SELECT * FROM product_with_language WHERE product_id =? AND language_id = ?", [$id, $language_id])[0];
+    }
 
+    public function getByIds($ids, $language_id)
+    {
+        $placeholders = str_repeat('?,', count($ids) - 1) . '?';
+        $values = array_merge($ids, [$language_id]);
+        return $this->db->query("SELECT * FROM product_with_language WHERE product_id IN ($placeholders) AND language_id = ?", $values);
+    }
 
-function getProductsByCategory($category, $language_id) {
-    $db = new Database();
-    return $db->query("SELECT product_with_language.* FROM product_has_category INNER JOIN product_with_language ON product_has_category.product_id = product_with_language.product_id WHERE category_id = ? AND language_id = ?",[$category,$language_id]);
+    public function getByName($name, $language_id)
+    {
+        return $this->db->query("SELECT * FROM product_with_language WHERE name LIKE '%?%' AND language_id = ?", [$name, $language_id]);
+    }
+    
+    public function getByCategory($category_id, $language_id){
+        return $this->db->query("SELECT product_with_language.* FROM product_has_category INNER JOIN product_with_language ON product_has_category.product_id = product_with_language.product_id WHERE category_id = ? AND language_id = ?", [$category_id, $language_id]);
+    }
+
 }

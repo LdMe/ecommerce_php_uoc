@@ -1,73 +1,72 @@
 <?php
 
-function startSession() {
-    if (session_status() == PHP_SESSION_NONE) {
-        session_start();
+require_once "models/product.php";
+
+
+class Cart {
+    private $productModel;
+    public function __construct() {
+        $this->productModel = new Product();
+        $this->startSession();
     }
-}
-
-function getCart() {
-    startSession();
-    return $_SESSION['cart'] ?? [];
-}
-function saveCart($cart) {
-    startSession();
-    $_SESSION['cart'] = $cart;
-}
-
-function getCartTotal() {
-    $cart = getCart();
-    $total = 0;
-    foreach ($cart as $product_id => $quantity) {
-        $product = getProductById($product_id);
-        $total += $product['price'] * $quantity / 100;
+    private function startSession() {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
     }
-    return $total;
-}
-function getTotalCartProducts() {
-    $cart = getCart();
-    return count($cart);
-}
-
-function formatProducts($cart,$language_id){
-    if(empty($cart)){
-        return [];
+    public function get() {
+        return $_SESSION['cart'] ?? [];
     }
-    $product_ids = array_keys($cart);
-    $products = getProductsByIds($product_ids, $language_id);
-    foreach ($products as &$product) {
-        $product['quantity'] = $cart[$product['product_id']];
-        $product['price'] = $product['price'] / 100;
-        $product['totalPrice'] = $product['price'] * $product['quantity'];
-        //echo $product['name'] . "<br>";
+    public function save($cart) {
+        $_SESSION['cart'] = $cart;
     }
-    return $products;
-}
 
-function getFormattedCart($language_id){
-    $cart = getCart();
-    return formatProducts($cart,$language_id);
-}
-
-function addToCart($product_id, $quantity,$replace=false) {
-    // TODO: get cart from session and add product
-    $cart = getCart();
-    $totalQuantity = $quantity;
-    if(isset($cart[$product_id]) && !$replace){
-        $totalQuantity += $cart[$product_id];
+    public function getTotal() {
+        $cart = $this->get();
+        $total = 0;
+        foreach ($cart as $product_id => $quantity) {
+            $product = $this->productModel->getById($product_id);
+            $total += $product['price'] * $quantity / 100;
+        }
+        return $total;
     }
-    $cart[$product_id] = $totalQuantity;
-    saveCart($cart);
+    public function getTotalProducts() {
+        $cart = $this->get();
+        return count($cart);
+    }
+    public function getFormattedProducts($language_id) {
+        $cart = $this->get();
+        if (empty($cart)) {
+            return [];
+        }
+        $product_ids = array_keys($cart);
+        $products = $this->productModel->getByIds($product_ids, $language_id);
+        foreach ($products as &$product) {
+            $product['quantity'] = $cart[$product['product_id']];
+            $product['price'] /= 100;
+            $product['totalPrice'] = $product['price'] * $product['quantity'];
+        }
+        return $products;
+    }
+    public function addProduct($product_id, $quantity,$replace=false) {
+        $cart = $this->get();
+        $totalQuantity = $quantity;
+        if(isset($cart[$product_id]) && !$replace){
+            $totalQuantity += $cart[$product_id];
+        }
+        $cart[$product_id] = $totalQuantity;
+        $this->save($cart);
+    }
+
+    public function deleteProduct($product_id) {
+        $cart = $this->get();
+        unset($cart[$product_id]);
+        $this->save($cart);
+    }
+
+    public function delete(){
+        unset($_SESSION['cart']);
+    }
+
 }
 
-
-function deleteProduct($product_id){
-    $cart = getCart();
-    unset($cart[$product_id]);
-    saveCart($cart);
-}
-
-function deleteCart() {
-    startSession();
-    unset($_SESSION['cart']);
-}

@@ -1,18 +1,18 @@
 <?php
-require_once "./models/cart.php";
-require_once "./components/navbar.php";
-require_once "./config/language.php";
-require_once "./config/Database.php";
-require_once "./models/product.php";
+require_once "models/cart.php";
+require_once "components/navbar.php";
+require_once "config/language.php";
+require_once "models/product.php";
 
 $product_id = $_POST['product_id'] ?? 0;
 $quantity = $_POST['quantity'] ?? 0;
+$cart = new Cart();
 if ($product_id > 0 && $quantity > 0) {
-    addToCart($product_id, $quantity);
+    $cart->addProduct($product_id, $quantity);
     header("Location: /cart.php");
 }
 
-$products = getFormattedCart( $language_id);
+$products = $cart->getFormattedProducts( $language_id);
 
 $deleteMessage = getTranslation("cart-product-delete-confirm", $language_id);
 ?>
@@ -81,7 +81,7 @@ $deleteMessage = getTranslation("cart-product-delete-confirm", $language_id);
             <td></td>
             <td> <?php echo getTranslation("total", $language_id); ?></td>
             <td>
-             <?php echo getCartTotal() ?>€
+             <?php echo $cart->getTotal() ?>€
             </td>
             <td>
                 <?php if(!empty($products)){ ?>

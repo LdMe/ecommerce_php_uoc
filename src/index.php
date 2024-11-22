@@ -1,21 +1,21 @@
 <?php
 
-require_once "./config/Database.php";
-require_once "./models/product.php";
-require_once "./models/text.php";
-require_once "./components/navbar.php";
-require_once "./components/languageSelector.php";
-require_once "./config/language.php";
-require_once "./models/client.php";
+require_once "models/product.php";
+require_once "models/text.php";
+require_once "components/navbar.php";
+require_once "components/languageSelector.php";
+require_once "config/language.php";
+require_once "models/client.php";
 
-
-$products = getProducts( $language_id );
+$productModel = new Product() ;
+$clientModel = new Client();
+$products = $productModel->getAll( $language_id );
 $category_id = $_GET['category_id'] ?? 0;
 if ($category_id > 0) {
-    $products = getProductsByCategory($category_id,$language_id);
+    $products = $productModel->getByCategory($category_id,$language_id);
 }
 $navbar = getNavbar( $language_id);
-$client = getLoggedInClient();
+$client = $clientModel->getLoggedInClient();
 ?>
 <!DOCTYPE html>
 <html lang="en">
