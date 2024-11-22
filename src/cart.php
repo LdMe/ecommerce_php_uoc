@@ -12,11 +12,7 @@ if ($product_id > 0 && $quantity > 0) {
     header("Location: /cart.php");
 }
 
-$cart = getCart();
-/* if(empty($cart)){
-    header("Location: /");
-} */
-$products = formatProducts($cart, $language_id);
+$products = getFormattedCart( $language_id);
 
 $deleteMessage = getTranslation("cart-product-delete-confirm", $language_id);
 ?>

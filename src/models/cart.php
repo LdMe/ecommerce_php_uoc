@@ -44,6 +44,11 @@ function formatProducts($cart,$language_id){
     return $products;
 }
 
+function getFormattedCart($language_id){
+    $cart = getCart();
+    return formatProducts($cart,$language_id);
+}
+
 function addToCart($product_id, $quantity,$replace=false) {
     // TODO: get cart from session and add product
     $cart = getCart();

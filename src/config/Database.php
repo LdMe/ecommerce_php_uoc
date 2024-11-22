@@ -13,6 +13,8 @@ class Database {
     private $password;
     private $conn;
 
+    static public $instance;
+
     public function __construct() {
         $this->host = getenv('DB_HOST') ?: 'php_db';
         $this->port =  '3306';
@@ -21,6 +23,12 @@ class Database {
         $this->password = getenv('DB_PASSWORD') ?: '1234';
         $this->connect();
 
+    }
+    static public function getInstance() {
+        if (!isset(self::$instance)) {
+            self::$instance = new Database();
+        }
+        return self::$instance;
     }
 
     public function connect() {

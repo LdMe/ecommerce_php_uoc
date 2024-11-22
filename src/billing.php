@@ -5,6 +5,7 @@ require_once "./models/client.php";
 require_once "./models/text.php";
 require_once "./config/language.php";
 require_once "./models/billing.php";
+require_once "./components/navbar.php";
 
 $user = getLoggedInClient();
 $labels = [
@@ -18,15 +19,18 @@ $values = [
     "phone" => "",
     "client_id" => ""
 ];
-if (!empty($user)) {
-    $lastBilling = getLastBilling($user['client_id']);
+$client_id = getClientId();
+if (isset($client_id)) {
+    $lastBilling = getLastBilling($client_id);
     $values = [
         "email" => $lastBilling['email'] ?? "",
         "address" => $lastBilling['address'] ?? "",
         "phone" => $lastBilling['tel'] ?? "",
         "client_id" => $lastBilling['client_id'] ?? ""
     ];
+    $billings = getBilling($client_id);
 }
+$navbar = getNavbar( $language_id);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,6 +42,7 @@ if (!empty($user)) {
 </head>
 
 <body>
+    <?php echo $navbar; ?>
     <h1><?php echo getTranslation("billing", $language_id); ?></h1>
     <?php
     if (empty($user)) {
@@ -45,8 +50,32 @@ if (!empty($user)) {
         <a href="/register.php?redirect=billing.php"><?php echo getTranslation("register-billing-title", $language_id); ?></a>
         <?php
     }
+    if(isset($billings) && count($billings) > 0) {
+        ?>
+        <h2><?php echo getTranslation("select-old-billing", $language_id); ?></h2>
+        <p><?php echo getTranslation("old-billings-data", $language_id); ?></p>
+        <table class="billing-list">
+            <tr>
+                <th><?php echo getTranslation("email", $language_id); ?></th>
+                <th><?php echo getTranslation("address", $language_id); ?></th>
+                <th><?php echo getTranslation("phone", $language_id); ?></th>
+            </tr>
+            <?php
+            foreach ($billings as $billing) {
+                ?>
+                <tr>
+                    <td class="billing-email"><?php echo $billing['email']; ?></td>
+                    <td class="billing-address"><?php echo $billing['address']; ?></td>
+                    <td class="billing-tel"><?php echo $billing['tel']; ?></td>
+                </tr>
+                <?php
+            }
+            ?>
+        </table>
+        <?php
+    }
     ?>
-    <form action="/actions/billing.php" method="POST">
+    <form class="billing-form" action="/actions/billing.php" method="POST">
         <input type="hidden" name="client_id" value=<?php echo $values['client_id']; ?>>
         <input type="text" name="email" placeholder="<?php echo $labels["email"]; ?>"
             value="<?php echo $values["email"]; ?>">
@@ -56,6 +85,29 @@ if (!empty($user)) {
             value="<?php echo $values["phone"]; ?>">
         <button type="submit"><?php echo getTranslation("save", $language_id); ?></button>
     </form>
+
+    <script>
+        function unselectBillings() {
+            const billings = document.querySelectorAll(".billing-list tr");
+            billings.forEach(billing => {
+                billing.classList.remove("selected");
+            });
+        }
+        const billings = document.querySelectorAll(".billing-list tr");
+        billings.forEach(billing => {
+            billing.addEventListener("click", () => {
+                const email = billing.querySelector(".billing-email").textContent;
+                const address = billing.querySelector(".billing-address").textContent;
+                const phone = billing.querySelector(".billing-tel").textContent;
+                document.querySelector(".billing-form input[name=email]").value = email;
+                document.querySelector(".billing-form input[name=address]").value = address;
+                document.querySelector(".billing-form input[name=phone]").value = phone;
+                unselectBillings();
+                billing.classList.add("selected");
+
+            });
+        });
+    </script>
 </body>
 
 </html>

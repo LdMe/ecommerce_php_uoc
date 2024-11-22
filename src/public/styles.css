@@ -27,3 +27,19 @@
 .cart-product-card img {
     width: 50%;
 }
+
+.billing-list tr:not(.selected):hover {
+    cursor: pointer;
+    background-color: #bfccb6;
+}
+.selected {
+    background-color: #b1e88c;
+}
+
+.billing-data{
+    border: 1px solid #2d2c2c;
+}
+.billing-data td, th {
+    border: 1px solid #2d2c2c;
+    text-align: center;
+}

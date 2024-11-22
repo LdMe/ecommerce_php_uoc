@@ -14,7 +14,8 @@ function registerClient($name, $email, $password, $confirmPassword)
     $db->execute("INSERT INTO registered_client (client_id, name, email, password,client_type_id) VALUES (?,?,?,?,?)", [$client_id, $name, $email, $hash, $client_type_id]);
     return true;
 }
-function createNonRegisteredClient(){
+function createNonRegisteredClient()
+{
     $db = new \App\Config\Database();
     $db->execute("INSERT INTO client (client_id ) VALUES (NULL)");
     $client_id = $db->getLastInsertId();
@@ -41,6 +42,11 @@ function loginClient($email, $password)
         setCookie("client_id", $result[0]['client_id'], time() + (86400 * 30), "/");
         return true;
     }
+    return false;
+}
+function loginNonRegisteredClient($client_id)
+{
+    setCookie("client_id", $client_id, time() + (86400 * 30), "/");
 }
 
 function logoutClient()
@@ -57,6 +63,13 @@ function getLoggedInClient()
             return null;
         }
         return $result[0];
+    }
+    return null;
+}
+function getClientId()
+{
+    if (isset($_COOKIE['client_id'])) {
+        return $_COOKIE['client_id'];
     }
     return null;
 }

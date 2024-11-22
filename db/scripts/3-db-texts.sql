@@ -29,7 +29,11 @@ INSERT INTO text (text_id) VALUES
 ("phone"),
 ("billing"),
 ("save"),
-("register-billing-title")
+("register-billing-title"),
+("select-old-billing"),
+("old-billings-data"),
+("purchase-title"),
+("purchase")
 ;
 
 
@@ -182,5 +186,27 @@ INSERT INTO text_has_language (text_id, language_id, content) VALUES
 ("register-billing-title",1, "Regístrate para una mejor experiencia de compra"),
 ("register-billing-title",2,"Erregistratu erosketa esperientzia hobea izateko"),
 ("register-billing-title",3, "Registreu-vos per una millor experiència de compra"),
-("register-billing-title",4, "Register for a better purchase experience")
+("register-billing-title",4, "Register for a better purchase experience"),
+
+("select-old-billing",1, "Puedes seleccionar los datos de una factura anterior"),
+("select-old-billing",2, "Aurreko fakturaren baten datuak aukeratu ditzakezu"),
+("select-old-billing",3, "Pots seleccionar els dades d'una factura anterior"),
+("select-old-billing",4, "You can select the data of a previous billing"),
+
+("old-billings-data",1, "Datos de facturas anteriores"),
+("old-billings-data",2, "Aurreko fakturen datuak"),
+("old-billings-data",3, "Dades de factures anteriors"),
+("old-billings-data",4, "Previous billing data"),
+
+("purchase-title",1, "Compra"),
+("purchase-title",2, "Erosketa"),
+("purchase-title",3, "Compra"),
+("purchase-title",4, "Purchase"),
+
+("purchase",1, "Comprar"),
+("purchase",2, "Erosi"),
+("purchase",3, "Comprar"),
+("purchase",4, "Buy")
+
+
 ;
