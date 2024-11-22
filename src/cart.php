@@ -35,6 +35,7 @@ $deleteMessage = getTranslation("cart-product-delete-confirm", $language_id);
     <?php
     if (empty($products)) {
         echo getTranslation("cart-empty", $language_id);
+        exit();
     }
     ?>
     <table class="cart-list">

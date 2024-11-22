@@ -22,4 +22,5 @@ if(empty($lastBilling)){
 }
 
 $purchaseModel->create($client_id, $lastBilling['billing_info_id'], $cart);
+$cartModel->delete();
 header('Location:/purchase-history.php');
