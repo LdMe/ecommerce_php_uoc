@@ -1,7 +1,7 @@
 <?php
 
-require_once "models/cart.php";
-require_once "config/language.php";
+require_once $_SERVER['DOCUMENT_ROOT'] ."/models/cart.php";
+require_once $_SERVER['DOCUMENT_ROOT'] ."/models/language.php";
 
 
 require_once "models/product.php";

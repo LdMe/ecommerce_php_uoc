@@ -1,8 +1,10 @@
 
 <?php
-require_once "./components/navbar.php";
-require_once "./config/language.php";
+require_once $_SERVER['DOCUMENT_ROOT'] ."/components/navbar.php";
+require_once $_SERVER['DOCUMENT_ROOT'] ."/models/language.php";
 
+$languageModel = new language();
+$language_id = $languageModel->getSavedLanguage();
 $labels = [
     "email" => getTranslation("email", $language_id),
     "password" => getTranslation("password", $language_id),

@@ -1,12 +1,12 @@
 <?
 
-require_once "models/client.php";
-require_once "models/billing.php";
-require_once "models/cart.php";
-require_once "models/text.php";
-require_once "config/language.php";
-require_once "models/product.php";
-require_once "components/navbar.php";
+require_once $_SERVER['DOCUMENT_ROOT'] ."/models/client.php";
+require_once $_SERVER['DOCUMENT_ROOT'] ."/models/billing.php";
+require_once $_SERVER['DOCUMENT_ROOT'] ."/models/cart.php";
+require_once $_SERVER['DOCUMENT_ROOT'] ."/models/text.php";
+require_once $_SERVER['DOCUMENT_ROOT'] ."/models/language.php";
+require_once $_SERVER['DOCUMENT_ROOT'] ."/models/product.php";
+require_once $_SERVER['DOCUMENT_ROOT'] ."/components/navbar.php";
 
 $languageModel = new Language();
 $language_id = $languageModel->getSavedLanguage();
@@ -16,17 +16,24 @@ $client = $clientModel->getLoggedInClient();
 $client_id = empty($client) ? $clientModel->getLoggedInClientId() : $client['client_id'];
 if (!isset($client_id)) {
     header("Location: /");
+    exit();
 }
 
-$cart = new Cart();
+$cartModel = new Cart();
 $billingModel = new Billing();
 $billing = $billingModel->getLastByClient($client_id);
+$cartTotal = $cartModel->getTotal();
+if($cartTotal == 0){
+    header("Location: /");
+    exit();
+}
 if (empty($billing)) {
     header("Location: /billing.php");
+    exit();
 }
-$products = $cart->getFormattedProducts($language_id);
+$products = $cartModel->getFormattedProducts($language_id);
 $labels = [
-    "email" => getTranslation(text_id: "email", $language_id),
+    "email" => getTranslation( "email", $language_id),
     "address" => getTranslation("address", $language_id),
     "phone" => getTranslation("phone", $language_id)
 ];
@@ -97,7 +104,7 @@ $labels = [
             <td></td>
             <td> <?php echo getTranslation("total", $language_id); ?></td>
             <td>
-                <?php echo $cart->getTotal() ?>€
+                <?php echo $cartTotal; ?>€
             </td>
             
         </tr>

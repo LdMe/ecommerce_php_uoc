@@ -1,11 +1,13 @@
 <?php
 
-require_once "models/client.php";
-require_once "models/text.php";
-require_once "config/language.php";
-require_once "models/billing.php";
-require_once "components/navbar.php";
+require_once $_SERVER['DOCUMENT_ROOT'] ."/models/client.php";
+require_once $_SERVER['DOCUMENT_ROOT'] ."/models/text.php";
+require_once $_SERVER['DOCUMENT_ROOT'] ."/models/language.php";
+require_once $_SERVER['DOCUMENT_ROOT'] ."/models/billing.php";
+require_once $_SERVER['DOCUMENT_ROOT'] ."/components/navbar.php";
 
+$languageModel = new language();
+$language_id = $languageModel->getSavedLanguage();
 $clientModel = new Client();
 $client = $clientModel->getLoggedInClient();
 $labels = [

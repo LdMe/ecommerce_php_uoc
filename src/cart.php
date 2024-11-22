@@ -1,15 +1,18 @@
 <?php
-require_once "models/cart.php";
-require_once "components/navbar.php";
-require_once "config/language.php";
-require_once "models/product.php";
+require_once $_SERVER['DOCUMENT_ROOT'] ."/models/cart.php";
+require_once $_SERVER['DOCUMENT_ROOT'] ."/components/navbar.php";
+require_once $_SERVER['DOCUMENT_ROOT'] ."/models/language.php";
+require_once $_SERVER['DOCUMENT_ROOT'] ."/models/product.php";
 
+$languageModel = new language();
+$language_id = $languageModel->getSavedLanguage();
 $product_id = $_POST['product_id'] ?? 0;
 $quantity = $_POST['quantity'] ?? 0;
 $cart = new Cart();
 if ($product_id > 0 && $quantity > 0) {
     $cart->addProduct($product_id, $quantity);
     header("Location: /cart.php");
+    exit();
 }
 
 $products = $cart->getFormattedProducts( $language_id);

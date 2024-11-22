@@ -1,14 +1,16 @@
 <?php
 
-require_once "models/product.php";
-require_once "models/text.php";
-require_once "components/navbar.php";
-require_once "components/languageSelector.php";
-require_once "config/language.php";
-require_once "models/client.php";
+require_once $_SERVER['DOCUMENT_ROOT'] ."/models/product.php";
+require_once $_SERVER['DOCUMENT_ROOT'] ."/models/text.php";
+require_once $_SERVER['DOCUMENT_ROOT'] ."/components/navbar.php";
+require_once $_SERVER['DOCUMENT_ROOT'] ."/components/languageSelector.php";
+require_once $_SERVER['DOCUMENT_ROOT'] ."/models/language.php";
+require_once $_SERVER['DOCUMENT_ROOT'] ."/models/client.php";
 
 $productModel = new Product() ;
 $clientModel = new Client();
+$languageModel = new Language();
+$language_id = $languageModel->getSavedLanguage();
 $products = $productModel->getAll( $language_id );
 $category_id = $_GET['category_id'] ?? 0;
 if ($category_id > 0) {

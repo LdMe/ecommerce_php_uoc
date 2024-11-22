@@ -1,5 +1,5 @@
 <?php
-require_once "./models/language.php";
+require_once $_SERVER['DOCUMENT_ROOT'] ."/models/language.php";
 
 function getLanguageSelector( $language_id) {
     $languageModel = new Language() ;

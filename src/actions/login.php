@@ -1,6 +1,6 @@
 <?php
 
-require_once "models/client.php";
+require_once $_SERVER['DOCUMENT_ROOT'] ."/models/client.php";
 $redirect =  $_GET['redirect'] ?? null;
 $correctUrl = $redirect ? "/".$redirect : "/";
 $incorrectUrl = "/login.php" . ($redirect ? "?redirect=$redirect" : "");

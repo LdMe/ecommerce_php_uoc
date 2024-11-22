@@ -1,6 +1,6 @@
 <?php
-require_once "models/cart.php";
-require_once "config/language.php";
+require_once $_SERVER['DOCUMENT_ROOT'] ."/models/cart.php";
+require_once $_SERVER['DOCUMENT_ROOT'] ."/models/language.php";
 
 
 $product_id = $_POST['product_id'] ?? 0;

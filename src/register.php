@@ -1,8 +1,10 @@
 <?php
 
-require_once "./models/text.php";
-require_once "./config/language.php";
+require_once $_SERVER['DOCUMENT_ROOT'] ."/models/text.php";
+require_once $_SERVER['DOCUMENT_ROOT'] ."/models/language.php";
 
+$languageModel = new language();
+$language_id = $languageModel->getSavedLanguage();
 $labels = [
     "name" => getTranslation("name", $language_id),
     "email" => getTranslation("email", $language_id),

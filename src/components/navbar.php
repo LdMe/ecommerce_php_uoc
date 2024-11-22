@@ -1,7 +1,7 @@
 <?php
-require_once "models/category.php";
-require_once "models/text.php";
-require_once "models/cart.php";
+require_once $_SERVER['DOCUMENT_ROOT'] ."/models/category.php";
+require_once $_SERVER['DOCUMENT_ROOT'] ."/models/text.php";
+require_once $_SERVER['DOCUMENT_ROOT'] ."/models/cart.php";
 
 function getNavbar( $language_id) {
     $categoryModel = new Category();

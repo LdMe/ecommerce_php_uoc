@@ -1,6 +1,6 @@
 <?php
 
-require_once "models/baseModel.php";
+require_once $_SERVER['DOCUMENT_ROOT'] ."/models/baseModel.php";
 
 class Client extends BaseModel
 {

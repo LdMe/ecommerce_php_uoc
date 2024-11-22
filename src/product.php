@@ -1,16 +1,19 @@
 <?php
 
-require_once "./models/product.php";
-require_once "./components/navbar.php";
-require_once "./config/language.php";
-require_once "./models/cart.php";
+require_once $_SERVER['DOCUMENT_ROOT'] ."/models/product.php";
+require_once $_SERVER['DOCUMENT_ROOT'] ."/components/navbar.php";
+require_once $_SERVER['DOCUMENT_ROOT'] ."/models/language.php";
+require_once $_SERVER['DOCUMENT_ROOT'] ."/models/cart.php";
 
+$languageModel = new language();
+$language_id = $languageModel->getSavedLanguage();
 $id = $_GET['id'] ?? 0;
 if ($id > 0) {
     $productModel = new Product();
     $product = $productModel->getById($id, $language_id);
 }else{
     header('Location:/');
+    exit();
 }
 $navbar = getNavbar($language_id);
 ?>
