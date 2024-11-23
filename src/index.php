@@ -33,7 +33,6 @@ $client = $clientModel->getLoggedInClient();
 
 <body>
     <?php echo $navbar; ?>
-    <?php echo getLanguageSelector( $language_id); ?>
     <h1>
         <?php echo getTranslation("main-page-title",$language_id); ?>
     </h1>
@@ -50,10 +49,12 @@ $client = $clientModel->getLoggedInClient();
             ?>
             <article class='product-card'>
                 <img src=<?php echo $product['image']; ?> class='product-image' alt=<?php echo $product['name']; ?>>
-                <h2><?php echo $product['name']; ?></h2>
-                <p><?php echo $product['description']; ?></p>
-                <p><?php echo $product['price'] / 100; ?>€</p>
-                <a href="/product.php?id=<?php echo $product['product_id']; ?>"><?php echo getTranslation("product-more-info",$language_id); ?></a>
+                <section class="product-info">
+                    <h2><?php echo $product['name']; ?></h2>
+                    <p><?php echo $product['description']; ?></p>
+                    <p><?php echo $product['price'] / 100; ?>€</p>
+                    <a href="/product.php?id=<?php echo $product['product_id']; ?>"><?php echo getTranslation("product-more-info",$language_id); ?></a>
+                </section>
             </article>
             <?php
         }

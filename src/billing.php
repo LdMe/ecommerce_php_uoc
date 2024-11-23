@@ -1,10 +1,10 @@
 <?php
 
-require_once $_SERVER['DOCUMENT_ROOT'] ."/models/client.php";
-require_once $_SERVER['DOCUMENT_ROOT'] ."/models/text.php";
-require_once $_SERVER['DOCUMENT_ROOT'] ."/models/language.php";
-require_once $_SERVER['DOCUMENT_ROOT'] ."/models/billing.php";
-require_once $_SERVER['DOCUMENT_ROOT'] ."/components/navbar.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/models/client.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/models/text.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/models/language.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/models/billing.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/components/navbar.php";
 
 $languageModel = new language();
 $language_id = $languageModel->getSavedLanguage();
@@ -33,7 +33,7 @@ if (isset($client_id)) {
     ];
     $billings = $billingModel->getByClient($client_id);
 }
-$navbar = getNavbar( $language_id);
+$navbar = getNavbar($language_id);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,19 +50,23 @@ $navbar = getNavbar( $language_id);
     <?php
     if (empty($client)) {
         ?>
-        <a href="/register.php?redirect=billing.php"><?php echo getTranslation("register-billing-title", $language_id); ?></a>
+        <a
+            href="/register.php?redirect=billing.php"><?php echo getTranslation("register-billing-title", $language_id); ?></a>
         <?php
     }
-    if(isset($billings) && count($billings) > 0) {
+    if (isset($billings) && count($billings) > 0) {
         ?>
         <h2><?php echo getTranslation("select-old-billing", $language_id); ?></h2>
         <p><?php echo getTranslation("old-billings-data", $language_id); ?></p>
         <table class="billing-list">
+            <thead>
             <tr>
                 <th><?php echo getTranslation("email", $language_id); ?></th>
                 <th><?php echo getTranslation("address", $language_id); ?></th>
                 <th><?php echo getTranslation("phone", $language_id); ?></th>
             </tr>
+            </thead>
+            <tbody>
             <?php
             foreach ($billings as $billing) {
                 ?>
@@ -74,29 +78,40 @@ $navbar = getNavbar( $language_id);
                 <?php
             }
             ?>
+            </tbody>
         </table>
         <?php
     }
     ?>
     <form class="billing-form" action="/actions/billing.php" method="POST">
-        <input type="hidden" name="client_id" value=<?php echo $values['client_id']; ?> >
-        <input type="text" name="email" placeholder="<?php echo $labels["email"]; ?>"
+        <label for="email"><?php echo getTranslation("email", $language_id); ?></label>
+        <input type="hidden" name="client_id" value=<?php echo $values['client_id']; ?>>
+        <input type="email" name="email" placeholder="<?php echo $labels["email"]; ?>"
             value="<?php echo $values["email"]; ?>" required>
+        <label for="address"><?php echo getTranslation("address", $language_id); ?></label>
         <input type="text" name="address" placeholder="<?php echo $labels["address"]; ?>"
             value="<?php echo $values["address"]; ?>" required>
+        <label for="phone"><?php echo getTranslation("phone", $language_id); ?></label>
         <input type="text" name="phone" placeholder="<?php echo $labels["phone"]; ?>"
             value="<?php echo $values["phone"]; ?>" required>
-        <button type="submit"><?php echo getTranslation("save", $language_id); ?></button>
+        <section class="form-buttons">
+            <a href="/cart.php">
+                <button type="button">
+                    <?php echo getTranslation("back", $language_id); ?>
+                </button>
+            </a>
+            <button type="submit" class="primary"><?php echo getTranslation("continue", $language_id); ?></button>
+        </section>
     </form>
 
     <script>
         function unselectBillings() {
-            const billings = document.querySelectorAll(".billing-list tr");
+            const billings = document.querySelectorAll(".billing-list :not(thead) tr");
             billings.forEach(billing => {
                 billing.classList.remove("selected");
             });
         }
-        const billings = document.querySelectorAll(".billing-list tr");
+        const billings = document.querySelectorAll(".billing-list :not(thead) tr");
         billings.forEach(billing => {
             billing.addEventListener("click", () => {
                 const email = billing.querySelector(".billing-email").textContent;
@@ -108,6 +123,12 @@ $navbar = getNavbar( $language_id);
                 unselectBillings();
                 billing.classList.add("selected");
 
+            });
+        });
+        const inputs = document.querySelectorAll(".billing-form input");
+        inputs.forEach(input => {
+            input.addEventListener("input", () => {
+                unselectBillings();
             });
         });
     </script>

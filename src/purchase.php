@@ -1,12 +1,12 @@
 <?
 
-require_once $_SERVER['DOCUMENT_ROOT'] ."/models/client.php";
-require_once $_SERVER['DOCUMENT_ROOT'] ."/models/billing.php";
-require_once $_SERVER['DOCUMENT_ROOT'] ."/models/cart.php";
-require_once $_SERVER['DOCUMENT_ROOT'] ."/models/text.php";
-require_once $_SERVER['DOCUMENT_ROOT'] ."/models/language.php";
-require_once $_SERVER['DOCUMENT_ROOT'] ."/models/product.php";
-require_once $_SERVER['DOCUMENT_ROOT'] ."/components/navbar.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/models/client.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/models/billing.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/models/cart.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/models/text.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/models/language.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/models/product.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/components/navbar.php";
 
 $languageModel = new Language();
 $language_id = $languageModel->getSavedLanguage();
@@ -23,7 +23,7 @@ $cartModel = new Cart();
 $billingModel = new Billing();
 $billing = $billingModel->getLastByClient($client_id);
 $cartTotal = $cartModel->getTotal();
-if($cartTotal == 0){
+if ($cartTotal == 0) {
     header("Location: /");
     exit();
 }
@@ -33,7 +33,7 @@ if (empty($billing)) {
 }
 $products = $cartModel->getFormattedProducts($language_id);
 $labels = [
-    "email" => getTranslation( "email", $language_id),
+    "email" => getTranslation("email", $language_id),
     "address" => getTranslation("address", $language_id),
     "phone" => getTranslation("phone", $language_id)
 ];
@@ -79,7 +79,7 @@ $labels = [
             <th><?php echo getTranslation("total", $language_id); ?></th>
         </tr>
 
-        <?php foreach ($products as $product): ?>
+        <?php foreach ($products as $product) { ?>
             <tr class="cart-product-card">
                 <td>
                     <img class="cart-product-image" src=<?php echo $product['image']; ?> class='product-image' alt=<?php echo $product['name']; ?>>
@@ -97,21 +97,30 @@ $labels = [
                     <?php echo $product['totalPrice']; ?>€
                 </td>
             </tr>
-        <?php endforeach; ?>
+        <?php }
+        ; ?>
         <tr>
             <td></td>
             <td></td>
             <td></td>
-            <td> <?php echo getTranslation("total", $language_id); ?></td>
+            <td> <b><?php echo getTranslation("total", $language_id); ?></b></td>
             <td>
-                <?php echo $cartTotal; ?>€
+                <b><?php echo $cartTotal; ?>€</b>
             </td>
-            
+
         </tr>
     </table>
-    <form action="/actions/purchase.php" method="POST">
+    <form class="purchase-form" action="/actions/purchase.php" method="POST">
         <input type="hidden" name="client_id" value=<?php echo $client_id; ?>>
-        <button type="submit"><?php echo getTranslation("purchase", $language_id); ?></button>
+        <section class="form-buttons">
+            <a href="/billing.php">
+                <button type="button">
+                    <?php echo getTranslation("back", $language_id); ?>
+                </button>
+            </a>
+            <button type="submit" class="primary"><?php echo getTranslation("end-purchase", $language_id); ?></button>
+        </section>
+    </form>
 </body>
 
 </html>

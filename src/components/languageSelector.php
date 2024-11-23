@@ -7,10 +7,11 @@ function getLanguageSelector( $language_id) {
     ob_start();
     ?>
     <form action="/actions/change-language.php" method="POST">
+        <label for="language_id"><?php echo getTranslation("language", $language_id); ?></label>
         <select name="language_id" onChange="this.form.submit()">
-            <?php foreach ($languages as $language): ?>
+            <?php foreach ($languages as $language){ ?>
                 <option value="<?php echo $language['language_id']; ?>" <?php echo $language_id == $language['language_id'] ? "selected": ""; ?>><?php echo $language['name']; ?></option>
-            <?php endforeach; ?>
+            <?php }; ?>
             
         </select>
     </form>

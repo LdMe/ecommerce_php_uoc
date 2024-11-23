@@ -1,8 +1,8 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] ."/models/cart.php";
-require_once $_SERVER['DOCUMENT_ROOT'] ."/components/navbar.php";
-require_once $_SERVER['DOCUMENT_ROOT'] ."/models/language.php";
-require_once $_SERVER['DOCUMENT_ROOT'] ."/models/product.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/models/cart.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/components/navbar.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/models/language.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/models/product.php";
 
 $languageModel = new language();
 $language_id = $languageModel->getSavedLanguage();
@@ -15,7 +15,7 @@ if ($product_id > 0 && $quantity > 0) {
     exit();
 }
 
-$products = $cart->getFormattedProducts( $language_id);
+$products = $cart->getFormattedProducts($language_id);
 
 $deleteMessage = getTranslation("cart-product-delete-confirm", $language_id);
 ?>
@@ -48,7 +48,7 @@ $deleteMessage = getTranslation("cart-product-delete-confirm", $language_id);
             <th><?php echo getTranslation("actions", $language_id); ?></th>
         </tr>
 
-        <?php foreach ($products as $product): ?>
+        <?php foreach ($products as $product) { ?>
             <tr class="cart-product-card">
                 <td>
                     <img class="cart-product-image" src=<?php echo $product['image']; ?> class='product-image' alt=<?php echo $product['name']; ?>>
@@ -73,28 +73,35 @@ $deleteMessage = getTranslation("cart-product-delete-confirm", $language_id);
                 <td>
                     <form action="/actions/deleteProduct.php" method="POST">
                         <input type="hidden" name="product_id" value=<?php echo $product['product_id']; ?>>
-                        <button type="submit"
+                        <button type="submit" class="danger"
                             onclick="return confirm('<?php echo $deleteMessage; ?>')"><?php echo getTranslation("cart-product-delete", $language_id); ?></button>
                     </form>
                 </td>
             </tr>
-        <?php endforeach; ?>
+        <?php }
+        ; ?>
         <tr>
             <td></td>
             <td></td>
             <td></td>
-            <td> <?php echo getTranslation("total", $language_id); ?></td>
             <td>
-             <?php echo $cart->getTotal() ?>€
+                <b>
+                    <?php echo getTranslation("total", $language_id); ?>
+                </b>
             </td>
             <td>
-                <?php if(!empty($products)){ ?>
-                <form action="/billing.php" method="POST">
-                    <button type="submit" class="checkout-button">
-                        <?php echo getTranslation("buy", $language_id); ?>
-                    </button>
-                </form>
-                <?php }?>
+                <b>
+                    <?php echo $cart->getTotal() ?>€
+                </b>
+            </td>
+            <td>
+                <?php if (!empty($products)) { ?>
+                    <form class="cart-buy-form" action="/billing.php" method="POST">
+                        <button type="submit" class="checkout-button primary">
+                            <?php echo getTranslation("buy", $language_id); ?>
+                        </button>
+                    </form>
+                <?php } ?>
             </td>
         </tr>
     </table>

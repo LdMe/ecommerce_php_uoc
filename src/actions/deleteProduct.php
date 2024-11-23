@@ -4,8 +4,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] ."/models/cart.php";
 require_once $_SERVER['DOCUMENT_ROOT'] ."/models/language.php";
 
 
-require_once "models/product.php";
-require_once "models/text.php";
+require_once $_SERVER['DOCUMENT_ROOT'] ."/models/product.php";
+require_once $_SERVER['DOCUMENT_ROOT'] ."/models/text.php";
 
 $product_id = $_POST['product_id'] ?? 0;
 if ($product_id > 0) {

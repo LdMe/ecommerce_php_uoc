@@ -13,7 +13,7 @@ function getNavbar($language_id)
     $clientModel = new Client();
     $categories = $categoryModel->getCategories($language_id);
     $totalProducts = $cartModel->getTotalProducts();
-    $client_id = $clientModel->getLoggedInClientId();
+    $client= $clientModel->getLoggedInClient();
     $searchBar = getSearchBar($language_id);
     ob_start();
     ?>
@@ -25,10 +25,8 @@ function getNavbar($language_id)
                     <?php echo getTranslation("main-page-title", $language_id); ?>
                 </a>
             </li>
-            <li>
-                <?php echo getLanguageSelector($language_id); ?>
-            </li>
-            <?php if (!isset($client_id)) { ?>
+            
+            <?php if (!isset($client)) { ?>
                 <li>
                     <a href="/login.php">
                         <?php echo getTranslation("login", $language_id); ?>
@@ -52,6 +50,9 @@ function getNavbar($language_id)
                     <?php echo getTranslation("my-purchases", $language_id); ?>
                 </a>
             </li>
+            <li>
+                <?php echo getLanguageSelector($language_id); ?>
+            </li>
         </ul>
 
         <ul class="navbar-categories">
@@ -60,13 +61,13 @@ function getNavbar($language_id)
                     <?php echo getTranslation("category-all", $language_id); ?>
                 </a>
             </li>
-            <?php foreach ($categories as $category): ?>
+            <?php foreach ($categories as $category){ ?>
                 <li>
                     <a href="/?category_id=<?php echo $category['category_id']; ?>">
                         <?php echo $category['name']; ?>
                     </a>
                 </li>
-            <?php endforeach; ?>
+            <?php }; ?>
 
             <li>
                 <?php echo $searchBar; ?>

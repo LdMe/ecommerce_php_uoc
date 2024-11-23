@@ -49,17 +49,21 @@ class Purchase extends BaseModel
                     "client_id" => $purchase["client_id"],
                     "created_at" => $purchase["created_at"],
                     "billing_info" => $billing_info,
-                    "products" => []
+                    "products" => [],
+                    "total"=> 0
                 ];
             }
+            $productTotal = $purchase["price"] * $purchase["quantity"] / 100;
             $result[$purchase["purchase_id"]]["products"][] = [
                 "product_id"=> $purchase["product_id"],
-                "price" => $purchase["price"],
+                "price" => $purchase["price"] / 100,
                 "quantity" => $purchase["quantity"],
                 "name" => $purchase["name"],
                 "description" => $purchase["description"],
-                "image" => $purchase["image"]
+                "image" => $purchase["image"],
+                "totalPrice" => $productTotal
             ];
+            $result[$purchase["purchase_id"]]["total"] += $productTotal;
         }
         return $result;
     }

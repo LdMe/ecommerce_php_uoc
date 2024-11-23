@@ -32,30 +32,77 @@ $navbar = getNavbar($language_id);
         <?php echo getTranslation("purchase-history-title", $language_id); ?>
     </h1>
 
-    <?php
-    if(empty($purchases)) {
-        echo getTranslation("no-purchases", $language_id);
-    }
-    foreach ($purchases as $purchase) { ?>
-        <article class="purchase">
-            <p><?php echo $purchase['purchase_id']; ?></p>
-            <p> <?php echo $purchase['created_at']; ?> </p>
-            <p> <?php echo $purchase['billing_info']['address']; ?> </p>
-            <p> <?php echo $purchase['billing_info']['email']; ?> </p>
-            <p> <?php echo $purchase['billing_info']['tel']; ?> </p>
-            <section class="purchase-products">
-                <?php foreach ($purchase['products'] as $product) { ?>
-                    <article class="purchase-product">
-                        <img src=<?php echo $product['image']; ?> class='product-image' alt=<?php echo $product['name']; ?>>
-                        <p> <?php echo $product['name']; ?> </p>
-                        <p> <?php echo $product['description']; ?> </p>
-                        <p> <?php echo $product['quantity']; ?> </p>
-                        <p> <?php echo $product['price'] / 100; ?>€ </p>
-                    </article>
-                <?php } ?>
-            </section>
-        </article>
-    <?php } ?>
+    <section class="purchase-list">
+        <?php
+        if (empty($purchases)) {
+            echo getTranslation("no-purchases", $language_id);
+        }
+        foreach ($purchases as $purchase) { ?>
+            <article class="purchase">
+                <h2><?php echo getTranslation("purchase-title", $language_id); ?> <?php echo $purchase["purchase_id"]; ?></h2>
+                <p><?php echo getTranslation("purchase-date", $language_id); ?>: <?php echo $purchase["created_at"]; ?></p>
+                <h3><?php echo getTranslation("billing", $language_id) ?></h2>
+                <table class="billing-data">
+                    <tr>
+                        <th><?php echo getTranslation("email", $language_id); ?></th>
+                        <td><?php echo $purchase["billing_info"]['email']; ?></td>
+                    </tr>
+                    <tr>
+                        <th><?php echo getTranslation("address", $language_id); ?></th>
+                        <td><?php echo $purchase["billing_info"]['address']; ?></td>
+                    </tr>
+                    <tr>
+                        <th><?php echo getTranslation("phone", $language_id); ?></th>
+                        <td><?php echo $purchase["billing_info"]['tel']; ?></td>
+                    </tr>
+                </table>
+
+                <h2><?php echo getTranslation("cart", $language_id); ?></h2>
+                <table class="cart-list">
+                    <tr>
+                        <th><?php echo getTranslation("image", $language_id); ?></th>
+                        <th><?php echo getTranslation("name", $language_id); ?></th>
+                        <th><?php echo getTranslation("quantity", $language_id); ?></th>
+                        <th><?php echo getTranslation("price", $language_id); ?></th>
+                        <th><?php echo getTranslation("total", $language_id); ?></th>
+                    </tr>
+
+                    <?php foreach ($purchase["products"] as $product){ ?>
+                        <tr class="cart-product-card">
+                            <td>
+                                <img class="cart-product-image" src=<?php echo $product['image']; ?> class='product-image'
+                                    alt=<?php echo $product['name']; ?>>
+                            </td>
+                            <td>
+                                <?php echo $product['name']; ?>
+                            </td>
+                            <td>
+                                <?php echo $product['quantity']; ?>
+                            </td>
+                            <td>
+                                <?php echo $product['price']; ?>€
+                            </td>
+                            <td>
+                                <?php echo $product['totalPrice']; ?>€
+                            </td>
+                        </tr>
+                    <?php }; ?>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><b> <?php echo getTranslation("total", $language_id); ?></b></td>
+                        <td>
+                            <b><?php echo $purchase["total"]; ?>€</b>
+                        </td>
+
+                    </tr>
+                </table>
+                
+            </article>
+        <?php } ?>
+    </section>
+
 </body>
 
 </html>

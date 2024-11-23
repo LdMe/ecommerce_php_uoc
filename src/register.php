@@ -33,12 +33,12 @@ $navbar = getNavbar($language_id);
         <p class="error"> <?php echo getTranslation($message, $language_id); ?></p>
         <?php
     } ?>
-    <form action=<?php echo $actionUrl; ?> method="POST">
+    <form class="login-form" action=<?php echo $actionUrl; ?> method="POST">
         <input type="text" name="name" placeholder="<?php echo $labels["name"]; ?>" required>
         <input type="email" name="email" placeholder="<?php echo $labels["email"]; ?>" required>
         <input type="password" name="password" placeholder="<?php echo $labels["password"]; ?>" required>
         <input type="password" name="confirm-password" placeholder="<?php echo $labels["confirm-password"]; ?>" required>
-        <button type="submit"><?php echo getTranslation("register", $language_id); ?></button>
+        <button class="primary" type="submit"><?php echo getTranslation("register", $language_id); ?></button>
     </form>
     <a href="/login.php?redirect=<?php echo $redirect; ?>"><?php echo getTranslation("login", $language_id); ?></a>
 </body>

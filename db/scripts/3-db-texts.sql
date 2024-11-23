@@ -42,7 +42,12 @@ INSERT INTO text (text_id) VALUES
 ("my-purchases"),
 ("no-purchases"),
 ("search"),
-("no-results")
+("no-results"),
+("back"),
+("continue"),
+("language"),
+("purchase-date"),
+("end-purchase")
 ;
 
 
@@ -260,7 +265,31 @@ INSERT INTO text_has_language (text_id, language_id, content) VALUES
 ("no-results",1, "No se encontraron resultados"),
 ("no-results",2, "Ez da ezer aurkitu"),
 ("no-results",3, "No s'han trobat resultats"),
-("no-results",4, "No results found")
+("no-results",4, "No results found"),
 
+("back",1, "Volver"),
+("back",2, "Atzera"),
+("back",3, "Volver"),
+("back",4, "Back"),
+
+("continue",1, "Continuar"),
+("continue",2, "Jarraitu"),
+("continue",3, "Continuar"),
+("continue",4, "Continue"),
+
+("language",1, "Idioma"),
+("language",2, "Hizkuntza"),
+("language",3, "Lingua"),
+("language",4, "Language"),
+
+("purchase-date",1, "Fecha de compra"),
+("purchase-date",2, "Erosketaren data"),
+("purchase-date",3, "Data de compra"),
+("purchase-date",4, "Purchase date"),
+
+("end-purchase",1, "Finalizar compra"),
+("end-purchase",2, "Erosketa amaitu"),
+("end-purchase",3, "Finalitzar compra"),
+("end-purchase",4, "End purchase")
 
 ;
