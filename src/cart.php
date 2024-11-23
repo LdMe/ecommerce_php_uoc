@@ -31,7 +31,7 @@ $deleteMessage = getTranslation("cart-product-delete-confirm", $language_id);
 
 <body>
     <?php echo getNavbar($language_id); ?>
-    <h1><?php getTranslation("cart", $language_id); ?></h1>
+    <h1><?php echo getTranslation("cart", $language_id); ?></h1>
     <?php
     if (empty($products)) {
         echo getTranslation("cart-empty", $language_id);

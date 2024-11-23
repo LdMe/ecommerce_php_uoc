@@ -27,6 +27,15 @@ $navbar = getNavbar($language_id);
 <body>
     <?php
     echo $navbar;
+    ?>
+    <h1>
+        <?php echo getTranslation("purchase-history-title", $language_id); ?>
+    </h1>
+
+    <?php
+    if(empty($purchases)) {
+        echo getTranslation("no-purchases", $language_id);
+    }
     foreach ($purchases as $purchase) { ?>
         <article class="purchase">
             <p><?php echo $purchase['purchase_id']; ?></p>

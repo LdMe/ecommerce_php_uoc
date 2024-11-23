@@ -33,7 +33,16 @@ INSERT INTO text (text_id) VALUES
 ("select-old-billing"),
 ("old-billings-data"),
 ("purchase-title"),
-("purchase")
+("purchase"),
+("purchase-history-title"),
+("passwords-dont-match"),
+("email-exists"),
+("email-not-found"),
+("incorrect-credentials"),
+("my-purchases"),
+("no-purchases"),
+("search"),
+("no-results")
 ;
 
 
@@ -206,7 +215,52 @@ INSERT INTO text_has_language (text_id, language_id, content) VALUES
 ("purchase",1, "Comprar"),
 ("purchase",2, "Erosi"),
 ("purchase",3, "Comprar"),
-("purchase",4, "Buy")
+("purchase",4, "Buy"),
+
+("purchase-history-title",1, "Historial de compras"),
+("purchase-history-title",2, "Erosketa historiala"),
+("purchase-history-title",3, "Historial de compra"),
+("purchase-history-title",4, "Purchase history"),
+
+("passwords-dont-match",1, "Las contraseñas no coinciden"),
+("passwords-dont-match",2, "Pasahitzak ez dira berdinak"),
+("passwords-dont-match",3, "Las contrasenyas no coinciden"),
+("passwords-dont-match",4, "Passwords do not match"),
+
+("email-exists",1, "El correo ya existe"),
+("email-exists",2, "E-posta jada existitzen da"),
+("email-exists",3, "El correu ja existeix"),
+("email-exists",4, "Email already exists"),
+
+("email-not-found",1, "El correo no existe"),
+("email-not-found",2, "E-posta ex da existitzen"),
+("email-not-found",3, "El correu no existeix"),
+("email-not-found",4, "Email not found"),
+
+("incorrect-credentials",1, "Credenciales incorrectas"),
+("incorrect-credentials",2, "Datuak ez dira zuzenak"),
+("incorrect-credentials",3, "Credencials incorrectes"),
+("incorrect-credentials",4, "Incorrect credentials"),
+
+("my-purchases",1, "Mis compras"),
+("my-purchases",2, "Erosketak"),
+("my-purchases",3, "Mis compras"),
+("my-purchases",4, "My purchases"),
+
+("no-purchases",1, "No tienes compras"),
+("no-purchases",2, "Ez duzu erosketarik"),
+("no-purchases",3, "No tens compras"),
+("no-purchases",4, "No purchases"),
+
+("search",1, "Buscar"),
+("search",2, "Bilatu"),
+("search",3, "Buscar"),
+("search",4, "Search"),
+
+("no-results",1, "No se encontraron resultados"),
+("no-results",2, "Ez da ezer aurkitu"),
+("no-results",3, "No s'han trobat resultats"),
+("no-results",4, "No results found")
 
 
 ;

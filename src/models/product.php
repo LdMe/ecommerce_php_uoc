@@ -24,7 +24,8 @@ class Product extends BaseModel
 
     public function getByName($name, $language_id)
     {
-        return $this->db->query("SELECT * FROM product_with_language WHERE name LIKE '%?%' AND language_id = ?", [$name, $language_id]);
+        $search = '%' . $name . '%';
+        return $this->db->query("SELECT * FROM product_with_language WHERE name LIKE ? AND language_id = ?", [$search, $language_id]);
     }
     
     public function getByCategory($category_id, $language_id){

@@ -43,3 +43,8 @@
     border: 1px solid #2d2c2c;
     text-align: center;
 }
+
+.error{
+    background-color: #e7a5a5;
+    color: #e51e1e;
+}

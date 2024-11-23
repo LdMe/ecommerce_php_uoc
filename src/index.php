@@ -13,7 +13,10 @@ $languageModel = new Language();
 $language_id = $languageModel->getSavedLanguage();
 $products = $productModel->getAll( $language_id );
 $category_id = $_GET['category_id'] ?? 0;
-if ($category_id > 0) {
+$query = $_GET['query'] ?? "";
+if($query != "") {
+    $products = $productModel->getByName($query, $language_id);
+}else if ($category_id > 0) {
     $products = $productModel->getByCategory($category_id,$language_id);
 }
 $navbar = getNavbar( $language_id);

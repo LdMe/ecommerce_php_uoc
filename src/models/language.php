@@ -8,7 +8,7 @@ class Language extends BaseModel{
         return $this->db->query("SELECT * FROM language");
     }
     public function setLanguage($language_id){
-        setcookie('language_id', $language_id);
+        setcookie('language_id', $language_id, time() + (86400 * 30), "/");
     }
     public function getSavedLanguage(){
         return $_COOKIE['language_id'] ?? 1;

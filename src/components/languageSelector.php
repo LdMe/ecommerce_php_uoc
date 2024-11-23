@@ -6,7 +6,7 @@ function getLanguageSelector( $language_id) {
     $languages =$languageModel->getLanguages();
     ob_start();
     ?>
-    <form action="/" method="GET">
+    <form action="/actions/change-language.php" method="POST">
         <select name="language_id" onChange="this.form.submit()">
             <?php foreach ($languages as $language): ?>
                 <option value="<?php echo $language['language_id']; ?>" <?php echo $language_id == $language['language_id'] ? "selected": ""; ?>><?php echo $language['name']; ?></option>

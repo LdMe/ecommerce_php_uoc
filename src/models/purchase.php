@@ -29,13 +29,9 @@ class Purchase extends BaseModel
     public function getPurchaseHistory($client_id,$language_id)
     {
         $query = "SELECT * 
-                from purchase
-                JOIN purchase_has_product as php ON php.purchase_id=purchase.purchase_id
-                JOIN product ON product.product_id=php.product_id
-                JOIN billing_info ON billing_info.billing_info_id=purchase.billing_info_id
-                JOIN product_has_language as phl ON phl.product_id=product.product_id
-                WHERE purchase.client_id=? AND phl.language_id=?
-                ORDER BY purchase.created_at DESC;";
+                from purchase_history
+                WHERE client_id=? AND language_id=?
+                ORDER BY created_at DESC;";
         $result = $this->db->query($query, [$client_id, $language_id]);
         return $this->formatPuchases($result);
     }

@@ -79,13 +79,13 @@ $navbar = getNavbar( $language_id);
     }
     ?>
     <form class="billing-form" action="/actions/billing.php" method="POST">
-        <input type="hidden" name="client_id" value=<?php echo $values['client_id']; ?>>
+        <input type="hidden" name="client_id" value=<?php echo $values['client_id']; ?> >
         <input type="text" name="email" placeholder="<?php echo $labels["email"]; ?>"
-            value="<?php echo $values["email"]; ?>">
+            value="<?php echo $values["email"]; ?>" required>
         <input type="text" name="address" placeholder="<?php echo $labels["address"]; ?>"
-            value="<?php echo $values["address"]; ?>">
+            value="<?php echo $values["address"]; ?>" required>
         <input type="text" name="phone" placeholder="<?php echo $labels["phone"]; ?>"
-            value="<?php echo $values["phone"]; ?>">
+            value="<?php echo $values["phone"]; ?>" required>
         <button type="submit"><?php echo getTranslation("save", $language_id); ?></button>
     </form>
 
