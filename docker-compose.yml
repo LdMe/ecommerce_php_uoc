@@ -8,9 +8,7 @@ services:
     volumes:
       - ./src:/var/www/html
     networks:
-      - ecommerce_network
-    ports:
-      - 9000:9000
+      - ecommerce_internal_network
     environment:
       DB_HOST: ${DB_HOST}
       DB_PORT: ${DB_PORT}
@@ -31,6 +29,7 @@ services:
     depends_on:
       - app
     networks:
+      - ecommerce_internal_network
       - ecommerce_network
 
   db:
@@ -43,17 +42,18 @@ services:
       MYSQL_PASSWORD: ${DB_PASSWORD}
     volumes:
       #- db/data:/var/lib/mysql
-      - ./db/conf/mycustom.cnf:/etc/mysql/conf.d/custom.cnf:ro
+      - ./db/conf/conf_utf8.cnf:/etc/mysql/conf.d/custom.cnf:ro
       - ./db/scripts:/docker-entrypoint-initdb.d:ro
-    ports:
-      - ${DB_PORT}:3306
+    # ports:
+    #   - ${DB_PORT}:3306
     networks:
-      - ecommerce_network
+      - ecommerce_internal_network
 
 networks:
+  ecommerce_internal_network:
+    driver: bridge
+    internal: true
   ecommerce_network:
     driver: bridge
 
-# volumes:
-#   dbdata:
-#     driver: local
+
