@@ -1,65 +1,48 @@
 <?php
+require_once $_SERVER['DOCUMENT_ROOT'] . "/models/client.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/models/language.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/components/navbar.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/models/category.php";
 
-require_once $_SERVER['DOCUMENT_ROOT'] ."/models/product.php";
-require_once $_SERVER['DOCUMENT_ROOT'] ."/models/text.php";
-require_once $_SERVER['DOCUMENT_ROOT'] ."/components/navbar.php";
-require_once $_SERVER['DOCUMENT_ROOT'] ."/components/languageSelector.php";
-require_once $_SERVER['DOCUMENT_ROOT'] ."/models/language.php";
-require_once $_SERVER['DOCUMENT_ROOT'] ."/models/client.php";
-
-$productModel = new Product() ;
 $clientModel = new Client();
 $languageModel = new Language();
-$language_id = $languageModel->getSavedLanguage();
-$products = $productModel->getAll( $language_id );
-$category_id = $_GET['category_id'] ?? 0;
-$query = $_GET['query'] ?? "";
-if($query != "") {
-    $products = $productModel->getByName($query, $language_id);
-}else if ($category_id > 0) {
-    $products = $productModel->getByCategory($category_id,$language_id);
-}
-$navbar = getNavbar( $language_id);
+$categoryModel = new Category();
+
 $client = $clientModel->getLoggedInClient();
+$language_id = $languageModel->getSavedLanguage();
+$categories = $categoryModel->getCategories($language_id);
+$navbar = getNavbar($language_id);
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title><?php echo getTranslation("main-page-title", $language_id); ?></title>
 </head>
-
 <body>
     <?php echo $navbar; ?>
     <h1>
-        <?php echo getTranslation("main-page-title",$language_id); ?>
+        <?php echo getTranslation("main-page-title", $language_id); ?>
     </h1>
     <?php if(!empty($client)){ ?>
     <p>
-        <?php echo getTranslation("greeting",$language_id); ?>, <?php echo $client['name']; ?>!
+        <?php echo getTranslation("greeting", $language_id); ?>, <?php echo $client['name']; ?>!
     </p>
     <?php } ?>
-    <h2><?php echo getTranslation("product-category",$language_id); ?></h2>
-    
-    <section class="product-list">
-        <?php
-        foreach ($products as $product) {
-            ?>
-            <article class='product-card'>
-                <img src=<?php echo $product['image']; ?> class='product-image' alt=<?php echo $product['name']; ?>>
-                <section class="product-info">
-                    <h2><?php echo $product['name']; ?></h2>
-                    <p><?php echo $product['description']; ?></p>
-                    <p><?php echo $product['price'] / 100; ?>€</p>
-                    <a href="/product.php?id=<?php echo $product['product_id']; ?>"><?php echo getTranslation("product-more-info",$language_id); ?></a>
-                </section>
-            </article>
-            <?php
-        }
-        ?>
-    </section>
+    <p>
+        <?php echo getTranslation("main-page-intro", $language_id); ?>
+    </p>
+    <ul>
+        <?php foreach ($categories as $category) { ?>
+            <li>
+                <a href="/products.php?category_id=<?php echo $category['category_id']; ?>">
+                    <?php echo $category['name']; ?>
+                </a>
+            </li>
+        <?php } ?>
+    </ul>
 </body>
-
 </html>

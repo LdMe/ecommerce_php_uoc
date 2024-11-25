@@ -4,7 +4,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] ."/models/baseModel.php";
 
 class Client extends BaseModel
 {
-
+    private $cookieTime = 86400 * 30;
     public function registerClient($name, $email, $password, $confirmPassword,$old_client_id=null)
     {
         if ($password != $confirmPassword) {
@@ -44,14 +44,14 @@ class Client extends BaseModel
         $hash = $client[0]['password'];
         $isCorrect = password_verify($password, $hash);
         if ($isCorrect) {
-            setCookie("client_id", $client[0]['client_id'], time() + (86400 * 30), "/");
+            setCookie("client_id", $client[0]['client_id'], time() + $this->cookieTime, "/");
             return true;
         }
         throw new Exception("incorrect-credentials");
     }
     public function loginNonRegistered($client_id)
     {
-        setCookie("client_id", $client_id, time() + (86400 * 30), "/");
+        setCookie("client_id", $client_id, time() + $this->cookieTime, "/");
     }
     public function logout()
     {

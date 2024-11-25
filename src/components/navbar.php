@@ -57,13 +57,13 @@ function getNavbar($language_id)
 
         <ul class="navbar-categories">
             <li>
-                <a href="/?category_id=0">
+                <a href="/products.php?category_id=0">
                     <?php echo getTranslation("category-all", $language_id); ?>
                 </a>
             </li>
             <?php foreach ($categories as $category){ ?>
                 <li>
-                    <a href="/?category_id=<?php echo $category['category_id']; ?>">
+                    <a href="/products.php?category_id=<?php echo $category['category_id']; ?>">
                         <?php echo $category['name']; ?>
                     </a>
                 </li>

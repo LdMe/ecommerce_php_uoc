@@ -44,10 +44,11 @@ services:
       #- db/data:/var/lib/mysql
       - ./db/conf/conf_utf8.cnf:/etc/mysql/conf.d/custom.cnf:ro
       - ./db/scripts:/docker-entrypoint-initdb.d:ro
-    # ports:
-    #   - ${DB_PORT}:3306
+    ports:
+      - ${DB_PORT}:3306
     networks:
       - ecommerce_internal_network
+      - ecommerce_network
 
 networks:
   ecommerce_internal_network:
