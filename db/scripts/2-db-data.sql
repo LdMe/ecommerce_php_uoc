@@ -17,28 +17,28 @@ INSERT INTO category_has_language (category_id, language_id, name, description) 
 (2, 3, "Toys", "The best toys to have a bad time"),
 
 (3,1, "Herramientas", "Las peores herramientas para el trabajo"),
-(3,2, "Eztabarretak", "Lanerako tresna ezegokienak"),
+(3,2, "Tresnak", "Lanerako tresna ezegokienak"),
 (3,3, "Tools", "The worst tools for work");
 
 
 INSERT INTO product (product_id, price, image) VALUES
-(1, 2580, "/public/img/glasses.jpg"),
-(2, 5399, "/public/img/socks.jpg"),
-(3, 1250, "/public/img/trousers.jpg"),
-(4, 3785, "/public/img/board-game.jpg"),
-(5, 5750, "/public/img/console.jpg"),
-(6, 1000, "/public/img/bear.jpg"),
-(7, 1000, "/public/img/screwdriver.jpg"),
-(8, 1000, "/public/img/tape.jpg"),
-(9, 1000, "/public/img/brush.jpg");
+(1, 2580, "/public/img/products/glasses.jpg"),
+(2, 5399, "/public/img/products/socks.jpg"),
+(3, 1250, "/public/img/products/trousers.jpg"),
+(4, 3785, "/public/img/products/board-game.jpg"),
+(5, 5750, "/public/img/products/console.jpg"),
+(6, 1000, "/public/img/products/bear.jpg"),
+(7, 1000, "/public/img/products/screwdriver.jpg"),
+(8, 1000, "/public/img/products/tape.jpg"),
+(9, 1000, "/public/img/products/brush.jpg");
 
 INSERT INTO product_has_language (product_id, language_id, name, description) VALUES
 (1, 1, "Gafas del juicio", "Te permiten ver los defectos de los demás, pero te obligan a decirlos en voz alta"),
-(1, 2, "Betaurreko epaileak", "Besteen akatsak ikusteko aukera ematen dizute, baina ozen esatera behartzen zaituzte"),
+(1, 2, "Betaurreko epaileak", "Besteen akatsak ikusteko aukera ematen dizute, baina akats horiek ozen esatera behartzen zaituzte"),
 (1, 3, "Glasses of justice", "They allow you to see the faults of others, but force you to say them out loud"),
 
 (2,1, "Calcetines incorrectos", "Siempre sentirás que te los has puesto al revés"),
-(2,2, "Galtzerdi desegokiak", "Alderantziz jantzi dituzula nabarituko duzu"),
+(2,2, "Galtzerdi desegokiak", "Alderantziz jantzi dituzula irudituko zaizu"),
 (2,3, "Incorrect shoes", "You will always feel that you put them wrong"),
 
 (3,1, "Pantalones caídos","No importa cuánto aprietes el cinturón o cuántos botones pongas, siempre encontrarán el momento más inoportuno para caerse ligeramente"),
@@ -58,7 +58,7 @@ INSERT INTO product_has_language (product_id, language_id, name, description) VA
 (6,3, "Passive aggressive bear","Adorable passive aggressive stuffed bear that whispers passive-aggressive comments about your life decisions"),
 
 (7,1,"Destornillador des-adaptable","Destornillador mágicamente adaptable que cambia a cualquier tipo de punta... excepto la que necesitas en este momento"),
-(7,2,"Bihurkin egokiezina"," Magikoki moldagarria den bihurkina, edozein motatara aldatzen dena... oraintxe bertan behar duzuna izan ezik"),
+(7,2,"Bihurkin egokiezina"," Magikoki moldagarria den bihurkina, torloju guztietara egokitzen dena... oraintxe bertan behar duzuna izan ezik"),
 (7,3,"Un-adaptable screwdriver","Magically adaptable screwdriver that changes to any type of tip... except the one you need right now"),
 
 (8,1,"Cinta milimétrica","Cinta métrica que siempre se queda corta por unos pocos milímetros"),
@@ -66,7 +66,7 @@ INSERT INTO product_has_language (product_id, language_id, name, description) VA
 (8,3,"Milimetric measuring tape","Measuring tape that always gets short by a few millimeters"),
 
 (9,1,"Escoba creadora","Escoba encantada que da vida a las pelusas del suelo, convirtiéndolas en adorables (y rebeldes) criaturas peludas"),
-(9,2,"Erratz sortzailea","Erratza sorgindua, lurrazalei bizia ematen diena, izaki iletsu maitagarri (eta errebelde) bihurtuz"),
+(9,2,"Erratz sortzailea","Erratz sorgindua, hausts eta ileeri bizia ematen diena, izaki iletsu maitagarri (eta errebeldeak) bihurtuz"),
 (9,3,"Creator brush","Enchanted brush that gives life to the carpets of the floor, turning them into adorable (and rebellious) fluffy creatures");
 
 

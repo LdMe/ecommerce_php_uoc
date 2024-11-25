@@ -7,7 +7,7 @@ function getSearchBar( $language_id) {
     $query = $_GET['query'] ?? "";
     ob_start();
     ?>
-    <form action="/" method="GET">
+    <form action="/products.php" method="GET">
         <input type="text" name="query" placeholder="<?php echo getTranslation("search", $language_id); ?>" value="<?php echo $query; ?>">
         <button type="submit"><?php echo getTranslation("search", $language_id); ?></button>
     </form>

@@ -20,8 +20,8 @@ function getNavbar($language_id)
     <link rel="stylesheet" href="/public/styles.css">
     <nav>
         <ul class="navbar-actions">
-            <li>
-                <a href="/">
+            <li class="page-title">
+                <a href="/" >
                     <?php echo getTranslation("main-page-title", $language_id); ?>
                 </a>
             </li>

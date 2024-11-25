@@ -34,7 +34,6 @@ $client = $clientModel->getLoggedInClient();
 <body>
     <?php echo $navbar; ?>
     
-    <h2><?php echo getTranslation("product-category",$language_id); ?></h2>
     
     <section class="product-list">
         <?php
