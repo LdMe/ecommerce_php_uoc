@@ -46,7 +46,7 @@ $labels = [
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title><?php echo getTranslation("purchase-title", $language_id); ?></title>
 </head>
 
 <body>

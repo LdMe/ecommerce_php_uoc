@@ -16,6 +16,7 @@ if ($id > 0) {
     exit();
 }
 $navbar = getNavbar($language_id);
+$title = isset($product) ? $product["name"]:getTranslation("product-not-found", $language_id);
 ?>
 
 <!DOCTYPE html>
@@ -24,41 +25,47 @@ $navbar = getNavbar($language_id);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title><?php echo $title; ?></title>
 </head>
 
 <body>
-    <?php echo $navbar;
-
-    if (!isset($product)) {
-        ?>
-        <h1>
-            <?php echo getTranslation("product-not-found", $language_id); ?>
-        </h1>
+    <?php echo $navbar; ?>
+    <main>
         <?php
-    }
-    ?>
-    <article class="product-view">
-        <section class="product-image">
-            <img src=<?php echo $product['image']; ?> class='product-image' alt=<?php echo $product['name']; ?>>
-        </section>
-        <section class="product-info">
+        if (!isset($product)) {
+            ?>
             <h1>
-                <?php echo $product['name']; ?>
+                <?php 
+                echo getTranslation("product-not-found", $language_id);
+                 ?>
             </h1>
-            <p>
-                <?php echo $product['description']; ?>
-            </p>
-            <p>
-                <?php echo $product['price'] / 100; ?>€
-            </p>
-            <form action="/cart.php" method="POST">
-                <input type="hidden" name="product_id" value="<?php echo $product['product_id']; ?>">
-                <input type="number" name="quantity" value="1" min="1">
-                <button class="primary" type="submit"><?php echo getTranslation("cart-product-add", $language_id); ?></button>
-            </form>
-        </section>
-    </article>
+            <?php
+            exit();
+        }
+        ?>
+        <article class="product-view">
+            <section class="product-image">
+                <img src=<?php echo $product['image']; ?> class='product-image' alt=<?php echo $product['name']; ?>>
+            </section>
+            <section class="product-info">
+                <h1>
+                    <?php echo $product['name']; ?>
+                </h1>
+                <p>
+                    <?php echo $product['description']; ?>
+                </p>
+                <p>
+                    <?php echo $product['price'] / 100; ?>€
+                </p>
+                <form class="product-form" action="/actions/add-product.php" method="POST">
+                    <input type="hidden" name="product_id" value="<?php echo $product['product_id']; ?>">
+                    <input type="number" name="quantity" value="1" min="1">
+                    <button class="primary"
+                        type="submit"><?php echo getTranslation("cart-product-add", $language_id); ?></button>
+                </form>
+            </section>
+        </article>
+    </main>
 
 
 </body>

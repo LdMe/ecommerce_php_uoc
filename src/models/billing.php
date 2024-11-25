@@ -31,6 +31,29 @@ class Billing extends BaseModel
         }
         return $lastBilling['address'] == $address && $lastBilling['tel'] == $tel && $lastBilling['email'] == $email;
     }
+    public function getDefaultBillingDetails($client_id){
+        $values = [
+            "email" => "",
+            "address" => "",
+            "phone" => "",
+            "client_id" => ""
+        ];
+        $billings = null;
+        if (isset($client_id)) {
+            $lastBilling = $this->getLastByClient($client_id);
+            $values = [
+                "email" => $lastBilling['email'] ?? "",
+                "address" => $lastBilling['address'] ?? "",
+                "phone" => $lastBilling['tel'] ?? "",
+                "client_id" => $lastBilling['client_id'] ?? ""
+            ];
+            $billings = $this->getByClient($client_id);
+        }
+        return [
+            "values"=> $values,
+            "billings" => $billings
+        ];
+    }
     public function delete($billing_info_id){
         $this->db->execute('DELETE FROM billing_info WHERE billing_info_id = ?', [$billing_info_id]);
     }

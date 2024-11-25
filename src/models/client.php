@@ -7,6 +7,9 @@ class Client extends BaseModel
     private $cookieTime = 86400 * 30;
     public function registerClient($name, $email, $password, $confirmPassword,$old_client_id=null)
     {
+        if(!$this->checkNonRegisteredClientInDb($old_client_id)){
+            $old_client_id = null;
+        }
         if ($password != $confirmPassword) {
             throw new Exception("passwords-dont-match");
         }
@@ -85,6 +88,14 @@ class Client extends BaseModel
             return true;
         }
         return false;
+    }
+
+    public function checkNonRegisteredClientInDb($client_id){
+        $result = $this->db->query("SELECT * FROM client WHERE client_id = ?", [$client_id]);
+        if (empty($result)) {
+            return false;
+        }
+        return true;
     }
 
 }

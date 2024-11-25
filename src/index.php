@@ -26,39 +26,48 @@ $navbar = getNavbar($language_id);
 
 <body>
     <?php echo $navbar; ?>
-    <h1>
-        <?php echo getTranslation("main-page-title", $language_id); ?>
-    </h1>
-    <?php if (!empty($client)) { ?>
-        <p>
-            <?php echo getTranslation("greeting", $language_id); ?>, <?php echo $client['name']; ?>!
-        </p>
-    <?php } ?>
-    <p>
-        <?php echo getTranslation("main-page-description", $language_id); ?>
-    </p>
-    <h2 class="centered"><?php echo getTranslation("product-category", $language_id); ?></h2>
-    <section class="category-list">
-        <?php foreach ($categories as $category) { ?>
-            <article class="category-card">
-                <a href="/products.php?category_id=<?php echo $category['category_id']; ?>">
-                    <section class="category-image">
-                        <img src="/public/img/categories/<?php echo $category['category_id']; ?>.jpg">
-                    </section>
-                    <section class="category-info">
-                        <h2>
-                            <?php echo $category['name']; ?>
-                        </h2>
-                        <p>
-                            <?php echo $category['description']; ?>
-                        </p>
-                    </section>
+    <main class="home">
+        <section class="page-intro w-50">
+            <h1 class="centered">
+                <?php echo getTranslation("main-page-title", $language_id); ?>
+            </h1>
+            <p class="centered">
+                <?php echo getTranslation("main-page-description", $language_id); ?>
+            </p>
+            <img class="intro-image" src="/public/img/home.jpg"
+                alt="<?php echo getTranslation("main-page-title", $language_id); ?>">
+            <?php if (!empty($client)) { ?>
+                <p class="centered">
+                    <?php echo getTranslation("greeting", $language_id); ?>, <?php echo $client['name']; ?>!
+                </p>
+            <?php } ?>
 
-                </a>
-            </article>
+        </section>
+        <section class="categories w-50">
+            <h2 class="centered"><?php echo getTranslation("product-category", $language_id); ?></h2>
+            <section class="category-list">
+                <?php foreach ($categories as $category) { ?>
+                    <article class="category-card">
+                        <a href="/products.php?category_id=<?php echo $category['category_id']; ?>">
+                            <section class="category-image">
+                                <img src="/public/img/categories/<?php echo $category['category_id']; ?>.jpg">
+                            </section>
+                            <section class="category-info">
+                                <h2>
+                                    <?php echo $category['name']; ?>
+                                </h2>
+                                <p>
+                                    <?php echo $category['description']; ?>
+                                </p>
+                            </section>
 
-        <?php } ?>
-    </section>
+                        </a>
+                    </article>
+
+                <?php } ?>
+            </section>
+        </section>
+    </main>
 </body>
 
 </html>

@@ -12,7 +12,8 @@ class Product extends BaseModel
 
     public function getById($id, $language_id=1)
     {
-        return $this->db->query("SELECT * FROM product_with_language WHERE product_id =? AND language_id = ?", [$id, $language_id])[0];
+        $result = $this->db->query("SELECT * FROM product_with_language WHERE product_id =? AND language_id = ?", [$id, $language_id]);
+        return count($result) > 0? $result[0] : null;
     }
 
     public function getByIds($ids, $language_id)

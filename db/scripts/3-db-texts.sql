@@ -47,7 +47,11 @@ INSERT INTO text (text_id) VALUES
 ("continue"),
 ("language"),
 ("purchase-date"),
-("end-purchase")
+("end-purchase"),
+("product-not-found"),
+("cart-product-add-success"),
+("cart-product-add-error"),
+("register-success")
 ;
 
 
@@ -161,7 +165,7 @@ INSERT INTO text_has_language (text_id, language_id, content) VALUES
 ("phone",3, "Phone"),
 
 ("billing",1, "Facturacion"),
-("billing",2, "Facturazioa"),
+("billing",2, "Fakturazioa"),
 ("billing",3, "Billing"),
 
 ("save",1, "Guardar"),
@@ -201,7 +205,7 @@ INSERT INTO text_has_language (text_id, language_id, content) VALUES
 ("email-exists",3, "Email already exists"),
 
 ("email-not-found",1, "El correo no existe"),
-("email-not-found",2, "E-posta ex da existitzen"),
+("email-not-found",2, "E-posta ez da existitzen"),
 ("email-not-found",3, "Email not found"),
 
 ("incorrect-credentials",1, "Credenciales incorrectas"),
@@ -242,6 +246,21 @@ INSERT INTO text_has_language (text_id, language_id, content) VALUES
 
 ("end-purchase",1, "Finalizar compra"),
 ("end-purchase",2, "Erosketa amaitu"),
-("end-purchase",3, "End purchase")
+("end-purchase",3, "End purchase"),
 
+("product-not-found",1, "Producto no encontrado"),
+("product-not-found",2, "Ez da produktua aurkitu"),
+("product-not-found",3, "Product not found"),
+
+("cart-product-add-success",1, "Producto agregado al carrito"),
+("cart-product-add-success",2, "Produktua saskira gehitu da"),
+("cart-product-add-success",3, "Product added to cart"),
+
+("cart-product-add-error",1, "No se pudo agregar el producto al carrito"),
+("cart-product-add-error",2, "Ezin izan da produktua saskira gehitu"),
+("cart-product-add-error",3, "Could not add product to cart"),
+
+("register-success",1,"Registro exitoso"),
+("register-success",2,"Erregistratuta"),
+("register-success",3,"Successfully registered")
 ;

@@ -8,7 +8,7 @@ if (isset($_POST['address']) && isset($_POST['email']) && isset($_POST['phone'])
     $tel = $_POST['phone'];
     $clientModel = new Client();
     $client_id = $clientModel->getLoggedInClientId();
-    if (!isset($client_id) && !$clientModel->checkLoggedInClientInDb()) {
+    if (!isset($client_id) || !$clientModel->checkNonRegisteredClientInDb($client_id)) {
         $client_id = $clientModel->createNonRegistered();
         $clientModel->loginNonRegistered($client_id);
     }

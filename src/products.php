@@ -28,7 +28,7 @@ $client = $clientModel->getLoggedInClient();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title><?php echo getTranslation("main-page-title", $language_id); ?></title>
 </head>
 
 <body>
