@@ -164,9 +164,9 @@ INSERT INTO text_has_language (text_id, language_id, content) VALUES
 ("phone",2, "Telefonoa"),
 ("phone",3, "Phone"),
 
-("billing",1, "Facturacion"),
-("billing",2, "Fakturazioa"),
-("billing",3, "Billing"),
+("billing",1, "Datos de facturacion"),
+("billing",2, "Fakturazio datuak"),
+("billing",3, "Billing info"),
 
 ("save",1, "Guardar"),
 ("save",2, "Gorde"),
