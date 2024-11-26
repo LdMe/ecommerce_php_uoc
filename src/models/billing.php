@@ -1,12 +1,12 @@
 <?php
 
-require_once $_SERVER['DOCUMENT_ROOT'] ."/models/baseModel.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/models/baseModel.php";
 
 class Billing extends BaseModel
 {
     public function create($address, $email, $tel, $client_id)
     {
-        if($this->compareToLastBilling($address, $email,$tel, $client_id)){
+        if ($this->exists($address, $email, $tel, $client_id)) {
             return;
         }
         $this->db->execute("INSERT INTO billing_info (address, email, tel, client_id) VALUES (?,?,?,?)", [$address, $email, $tel, $client_id]);
@@ -23,15 +23,23 @@ class Billing extends BaseModel
         }
         return $result[0];
     }
-    public function compareToLastBilling($address, $email,$tel, $client_id)
+    public function exists($address, $email, $tel, $client_id)
     {
-        $lastBilling = $this->getLastByClient($client_id);
-        if (empty($lastBilling)) {
+        $billings = $this->getByClient($client_id);
+        if (empty($billings)) {
             return false;
         }
-        return $lastBilling['address'] == $address && $lastBilling['tel'] == $tel && $lastBilling['email'] == $email;
+        $result = false;
+        foreach ($billings as $billing) {
+            if ($billing["address"] == $address && $billing["email"] == $email && $billing["tel"] == $tel && $billing["client_id"] == $client_id) {
+                $result = true;
+                break;
+            }
+        }
+        return $result;
     }
-    public function getDefaultBillingDetails($client_id){
+    public function getDefaultBillingDetails($client_id)
+    {
         $values = [
             "email" => "",
             "address" => "",
@@ -50,11 +58,12 @@ class Billing extends BaseModel
             $billings = $this->getByClient($client_id);
         }
         return [
-            "values"=> $values,
+            "values" => $values,
             "billings" => $billings
         ];
     }
-    public function delete($billing_info_id){
+    public function delete($billing_info_id)
+    {
         $this->db->execute('DELETE FROM billing_info WHERE billing_info_id = ?', [$billing_info_id]);
     }
 }
