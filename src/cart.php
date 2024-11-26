@@ -60,10 +60,10 @@ $deleteMessage = getTranslation("cart-product-delete-confirm", $language_id);
                         </form>
                     </td>
                     <td>
-                        <?php echo $product['price']; ?>€
+                        <?php echo formatPrice($product['price']); ?>€
                     </td>
                     <td>
-                        <?php echo $product['totalPrice']; ?>€
+                        <?php echo formatPrice($product['totalPrice']); ?>€
                     </td>
                     <td>
                         <form action="/actions/delete-product.php" method="POST">
@@ -86,7 +86,7 @@ $deleteMessage = getTranslation("cart-product-delete-confirm", $language_id);
                 </td>
                 <td>
                     <b>
-                        <?php echo $cart->getTotal() ?>€
+                        <?php echo formatPrice($cart->getTotal());?>€
                     </b>
                 </td>
                 <td>

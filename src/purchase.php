@@ -91,10 +91,10 @@ $labels = [
                     <?php echo $product['quantity']; ?>
                 </td>
                 <td>
-                    <?php echo $product['price']; ?>€
+                    <?php echo formatPrice($product['price']); ?>€
                 </td>
                 <td>
-                    <?php echo $product['totalPrice']; ?>€
+                    <?php echo formatPrice($product['totalPrice']); ?>€
                 </td>
             </tr>
         <?php }
@@ -105,7 +105,7 @@ $labels = [
             <td></td>
             <td> <b><?php echo getTranslation("total", $language_id); ?></b></td>
             <td>
-                <b><?php echo $cartTotal; ?>€</b>
+                <b><?php echo formatPrice($cartTotal); ?>€</b>
             </td>
 
         </tr>

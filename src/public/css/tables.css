@@ -1,0 +1,61 @@
+table {
+    border-collapse: collapse;
+}
+
+.billing-list,
+.billing-data {
+    display: table;
+    width: 80%;
+    margin: 10px auto;
+}
+
+.billing-list tr,
+.billing-data tr {
+    width: 100%;
+    border-radius: 5px;
+}
+
+.billing-list th,
+.billing-list td,
+.billing-data th,
+.billing-data td {
+    border: 1px solid #2d2c2c;
+    width: 40%;
+}
+
+.billing-list tr:not(.selected):hover {
+    cursor: pointer;
+    background-color: #fcf3e4;
+}
+
+.cart-list td,
+.cart-list th {
+    width: 15%;
+    text-align: center;
+    border-bottom: 1px solid #2d2c2c;
+}
+
+.cart-product-card img {
+    width: 50%;
+}
+
+.purchase-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    margin: 50px auto;
+}
+
+.purchase-form button {
+    width: 50%;
+    margin: auto;
+}
+
+.purchase {
+    width: 80%;
+    margin: auto;
+    border: 1px solid black;
+    padding: 10px;
+    border-radius: 15px;
+}

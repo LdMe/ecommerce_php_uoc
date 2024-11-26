@@ -4,6 +4,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/models/product.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/components/navbar.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/models/language.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/models/cart.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/config/utils.php";
+
 
 $languageModel = new language();
 $language_id = $languageModel->getSavedLanguage();
@@ -55,7 +57,7 @@ $title = isset($product) ? $product["name"]:getTranslation("product-not-found", 
                     <?php echo $product['description']; ?>
                 </p>
                 <p>
-                    <?php echo $product['price'] / 100; ?>€
+                    <?php echo formatPrice($product['price'] ); ?>€
                 </p>
                 <form class="product-form" action="/actions/add-product.php" method="POST">
                     <input type="hidden" name="product_id" value="<?php echo $product['product_id']; ?>">

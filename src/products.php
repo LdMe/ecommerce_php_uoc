@@ -6,6 +6,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] ."/components/navbar.php";
 require_once $_SERVER['DOCUMENT_ROOT'] ."/components/languageSelector.php";
 require_once $_SERVER['DOCUMENT_ROOT'] ."/models/language.php";
 require_once $_SERVER['DOCUMENT_ROOT'] ."/models/client.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/config/utils.php";
 
 $productModel = new Product() ;
 $clientModel = new Client();
@@ -44,7 +45,7 @@ $client = $clientModel->getLoggedInClient();
                 <section class="product-info">
                     <h2><?php echo $product['name']; ?></h2>
                     <p><?php echo $product['description']; ?></p>
-                    <p><?php echo $product['price'] / 100; ?>€</p>
+                    <p><?php echo formatPrice($product['price']); ?>€</p>
                     <a href="/product.php?id=<?php echo $product['product_id']; ?>"><?php echo getTranslation("product-more-info",$language_id); ?></a>
                 </section>
             </article>

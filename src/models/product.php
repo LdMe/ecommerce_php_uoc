@@ -33,4 +33,6 @@ class Product extends BaseModel
         return $this->db->query("SELECT product_with_language.* FROM product_has_category INNER JOIN product_with_language ON product_has_category.product_id = product_with_language.product_id WHERE category_id = ? AND language_id = ?", [$category_id, $language_id]);
     }
 
+    
+
 }

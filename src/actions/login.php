@@ -18,11 +18,12 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     } catch (Exception $e) {
         $message = $e->getMessage();
         $seachParams[] = "message=$message";
+        $seachParams[] = "message-type=error";
         $location = $incorrectUrl . "?" . implode("&", $seachParams);
         header("Location: $location");
         exit();
     }
-
+    $seachParams[] = "message-type=success";
     $location = $correctUrl . "?" . implode("&", $seachParams);
     header("Location: $location");
 

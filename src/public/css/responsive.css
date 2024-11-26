@@ -1,0 +1,27 @@
+@media screen and (max-width: 768px) {
+    .product-view {
+        flex-direction: column;
+    }
+    .product-view .product-image {
+        width: 100%;
+        margin: auto;
+    }
+    .product-view .product-info {
+        width: 100%;
+    }
+    .home {
+        flex-direction: column;
+    }
+    .home .w-50 {
+        width: 100%;
+    }
+    table {
+        font-size: 0.7rem;
+    }
+    table input {
+        width: 100%;
+    }
+    .form-buttons {
+        width: 90%;
+    }
+}

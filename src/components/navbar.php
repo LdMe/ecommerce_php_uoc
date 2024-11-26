@@ -19,7 +19,6 @@ function getNavbar($language_id)
     ?>
     <header>
         <link rel="stylesheet" href="/public/css/styles.css">
-        <link rel="stylesheet" href="/public/css/navbar.css">
         <nav>
             <!-- Versión Desktop -->
             <ul class="navbar-actions">

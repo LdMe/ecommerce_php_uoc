@@ -167,7 +167,6 @@ nav button[type="submit"]:hover {
     }
 
     .search-container input[type="text"] {
-        /* flex-grow: 1; */
         width: 100%;
     }
 }

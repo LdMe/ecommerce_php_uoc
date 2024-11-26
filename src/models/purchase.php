@@ -53,10 +53,10 @@ class Purchase extends BaseModel
                     "total"=> 0
                 ];
             }
-            $productTotal = $purchase["price"] * $purchase["quantity"] / 100;
+            $productTotal = $purchase["price"] * $purchase["quantity"];
             $result[$purchase["purchase_id"]]["products"][] = [
                 "product_id"=> $purchase["product_id"],
-                "price" => $purchase["price"] / 100,
+                "price" => $purchase["price"],
                 "quantity" => $purchase["quantity"],
                 "name" => $purchase["name"],
                 "description" => $purchase["description"],

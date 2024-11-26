@@ -1,0 +1,70 @@
+.home {
+    display: flex;
+}
+
+.intro-image {
+    width: 60%;
+    margin-left: 20%;
+    border-radius: 15px;
+}
+
+input,
+button,
+select {
+    border-radius: 5px;
+    padding: 0.5em 1em;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+.primary {
+    background-color: #46a6e7;
+    color: #fff;
+}
+
+.primary:hover {
+    background-color: #2980b9;
+}
+
+.danger {
+    background-color: #c74a3c;
+    color: #fff;
+}
+
+.danger:hover {
+    background-color: #c0392b;
+}
+
+.form-buttons {
+    display: flex;
+    gap: 10px;
+    width: 50%;
+    justify-content: space-between;
+    margin: auto;
+}
+
+.form-buttons > * {
+    width: 50%;
+}
+
+.form-buttons > a > button {
+    width: 100%;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 50%;
+    margin: 50px auto;
+}
+
+.billing-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 80%;
+    margin: 50px auto;
+}
