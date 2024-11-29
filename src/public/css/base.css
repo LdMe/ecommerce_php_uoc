@@ -3,27 +3,12 @@
 }
 
 body {
-    background-color: #ffffff;
     margin: 0;
     padding: 0;
 }
 
 main {
     padding: 15px;
-}
-
-.selected {
-    background-color: #e9d3b4;
-}
-
-.error {
-    background-color: #e7a5a5;
-    color: #e51e1e;
-}
-
-.success {
-    background-color: #a5e7a5;
-    color: #1e7e1e;
 }
 
 .centered {
@@ -43,13 +28,12 @@ main {
 }
 
 a {
-    color: #2563eb;
     text-decoration: none;
     transition: all 0.2s ease;
 }
 
 a:hover {
-    color: #153fb4;
     border-bottom: 2px solid currentColor;
     font-size: 1.05rem;
 }
+

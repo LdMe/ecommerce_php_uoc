@@ -54,7 +54,7 @@ $title = isset($product) ? $product["name"]:getTranslation("product-not-found", 
                 <h1>
                     <?php echo $product['name']; ?>
                 </h1>
-                <p>
+                <p class="subtitle">
                     <?php echo $product['description']; ?>
                 </p>
                 <p>

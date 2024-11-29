@@ -1,0 +1,21 @@
+:root {
+    --primary-color:#f5b278;
+    --primary-color-hover: #d74242;
+    --background-color: #04303f;
+    --secondary-color: #295f71;
+    --secondary-color-hover: #295f71;
+    --secondary-background-color: #eec39d;
+    --secondary-background-color-hover: #e4ae7f;
+    --accent-color: #ff5252;
+    --acent-color-hover: #5a0a0a;
+    --accent-background-color: #ee7676;
+    --text-color: #1f363d;
+    --body-background-color: #e3e3e3;
+
+    --success-color: #69f0ae;
+    --success-background-color: #004d40;
+    --error-color: #ff5252;
+    --error-background-color: #4a0404;
+    --warning-color: #f1c40f;
+    --warning-background-color: #f1c40f;
+}

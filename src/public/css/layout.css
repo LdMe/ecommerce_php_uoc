@@ -19,23 +19,6 @@ button:hover {
     cursor: pointer;
 }
 
-.primary {
-    background-color: #46a6e7;
-    color: #fff;
-}
-
-.primary:hover {
-    background-color: #2980b9;
-}
-
-.danger {
-    background-color: #c74a3c;
-    color: #fff;
-}
-
-.danger:hover {
-    background-color: #c0392b;
-}
 
 .form-buttons {
     display: flex;

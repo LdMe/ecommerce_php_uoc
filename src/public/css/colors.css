@@ -1,0 +1,152 @@
+
+body {
+    background-color: var(--body-background-color);
+}
+
+.selected {
+    background-color: var(--secondary-background-color);
+}
+
+.error {
+    background-color: var(--error-background-color);
+    color: var(--error-color)
+}
+
+
+.success {
+    background-color: var(--success-background-color);
+    color: var(--success-color);
+}
+
+.primary {
+    background-color: var(--background-color);
+    color: var(--primary-color);
+}
+
+a {
+    color: var(--secondary-color);
+}
+
+a:hover {
+    color: var(--secondary-color-hover);
+}
+
+.primary:hover {
+    color: var(--primary-color-hover);
+}
+
+.danger {
+    background-color: var(--accent-background-color);
+    color: var(--text-color);
+}
+
+.danger:hover {
+    color: var(--acent-color-hover);
+}
+
+/* product */
+
+
+.product-card, .category-card{
+    border: 1px solid var(--accent-background-color);
+    background-color: var(--secondary-background-color);
+    color: var(--text-color);
+}
+
+
+.product-card:hover, .category-card:hover {
+    background-color: var(--secondary-background-color-hover);
+}
+
+
+/* navbar */
+
+nav {
+    background-color: var(--background-color);
+    box-shadow: 0 2px 4px var(--accent-background-color);
+}
+
+.navbar-actions {
+    border-bottom: 1px solid var(--accent-background-color)
+}
+
+.nav form {
+    color: var(--primary-color);
+}
+
+nav a {
+    color: var(--primary-color);
+}
+
+nav a:hover {
+    background-color: var(--secondary-background-color-hover);
+    color: var(--primary-color-hover);
+}
+
+.page-title a {
+    color: var(--accent-color);
+}
+
+nav label {
+    color:var(--primary-color);
+}
+
+nav select,
+nav input[type="text"] {
+    background-color: var(--secondary-background-color);
+    color: var(--secondary-color);
+}
+nav option {
+    background-color: var(--background-color);
+    color: var(--primary-color);
+}
+nav button[type="submit"] {
+    background-color: var(--secondary-background-color);
+    color: var(--secondary-color);
+}
+
+nav button[type="submit"]:hover {
+    background-color: var(--secondary-background-color-hover);
+}
+
+.badge {
+    background-color: var(--accent-background-color);
+    color: var(--text-color)
+}
+
+.billing-data td {
+    border: 1px solid var(--background-color);
+}
+
+.billing-list tr:not(.selected):hover {
+    background-color: var(--secondary-background-color-hover);
+}
+.cart-list td,
+.cart-list th {
+    border-bottom: 1px solid var(--background-color);
+}
+.purchase {
+    border: 1px solid var(--background-color);
+}
+@media screen and (max-width: 767px) {
+    .navbar-bottom {
+        border-top: 1px solid var(--background-color);
+
+    }
+    .dropdown-toggle {
+        background-color: var(--background-color);
+        color: var(--primary-color);
+    }
+    .dropdown-toggle:hover {
+        background-color: var(--secondary-background-color-hover);
+        color: var(--secondary-color-hover);
+    }
+    .dropdown-menu.show {
+        background-color: var(--secondary-background-color);
+        box-shadow: 0 2px 4px var(--accent-background-color);
+    }
+    .dropdown-menu li a,
+    .dropdown-menu li label {
+        color: var(--text-color);
+    }
+}

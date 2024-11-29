@@ -32,7 +32,7 @@ $navbar = getNavbar($language_id);
             <h1 class="centered">
                 <?php echo getTranslation("main-page-title", $language_id); ?>
             </h1>
-            <p class="centered">
+            <p class="centered subtitle">
                 <?php echo getTranslation("main-page-description", $language_id); ?>
             </p>
             <img class="intro-image" src="/public/img/home.jpg"
