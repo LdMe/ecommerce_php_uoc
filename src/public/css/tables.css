@@ -22,7 +22,7 @@ table {
     width: 40%;
 }
 
-.billing-list tr:not(.selected):hover {
+.billing-list tbody tr{
     cursor: pointer;
 }
 

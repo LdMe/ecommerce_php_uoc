@@ -114,19 +114,20 @@ nav button[type="submit"]:hover {
     color: var(--text-color)
 }
 
-.billing-data td {
-    border: 1px solid var(--background-color);
+.billing-data td,
+.billing-list td {
+    border: 1px solid var(--text-color);
 }
 
-.billing-list tr:not(.selected):hover {
+.billing-list tbody tr:not(.selected):hover {
     background-color: var(--secondary-background-color-hover);
 }
 .cart-list td,
 .cart-list th {
-    border-bottom: 1px solid var(--background-color);
+    border-bottom: 1px solid var(--text-color);
 }
 .purchase {
-    border: 1px solid var(--background-color);
+    border: 1px solid var(--text-color);
 }
 @media screen and (max-width: 767px) {
     .navbar-bottom {
