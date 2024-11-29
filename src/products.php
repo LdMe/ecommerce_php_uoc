@@ -7,10 +7,13 @@ require_once $_SERVER['DOCUMENT_ROOT'] ."/components/languageSelector.php";
 require_once $_SERVER['DOCUMENT_ROOT'] ."/models/language.php";
 require_once $_SERVER['DOCUMENT_ROOT'] ."/models/client.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/config/utils.php";
+require_once $_SERVER['DOCUMENT_ROOT'] ."/models/client.php";
 
 $productModel = new Product() ;
 $clientModel = new Client();
 $languageModel = new Language();
+$categoryModel = new Category();
+
 $language_id = $languageModel->getSavedLanguage();
 $products = $productModel->getAll( $language_id );
 $category_id = $_GET['category_id'] ?? 0;
@@ -18,6 +21,7 @@ $query = $_GET['query'] ?? "";
 if($query != "") {
     $products = $productModel->getByName($query, $language_id);
 }else if ($category_id > 0) {
+    $category = $categoryModel->getById( $category_id, $language_id );
     $products = $productModel->getByCategory($category_id,$language_id);
 }
 $navbar = getNavbar( $language_id);
@@ -36,7 +40,9 @@ $client = $clientModel->getLoggedInClient();
 <body>
     <?php echo $navbar; ?>
     
-    
+    <h1 class="centered"><?php 
+    echo isset($category) ?  $category['name']:  "";
+    ?></h1>
     <section class="product-list">
         <?php
         foreach ($products as $product) {
