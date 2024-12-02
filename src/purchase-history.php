@@ -29,7 +29,7 @@ $navbar = getNavbar($language_id);
     <?php
     echo $navbar;
     ?>
-    <h1>
+    <h1 class="centered">
         <?php echo getTranslation("purchase-history-title", $language_id); ?>
     </h1>
 

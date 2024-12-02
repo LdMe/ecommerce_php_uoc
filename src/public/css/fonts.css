@@ -1,23 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Jaro:opsz@6..72&family=Lacquer&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lacquer&family=Special+Elite&display=swap');
 
-/* .subtitle {
-    font-family: 'Lacquer', cursive;
-}
-
-h1 {
-    font-family: 'Jaro', sans-serif;
-}
-.product-info h2{
-    font-family: 'Jaro', sans-serif;
-}
-.product-info p{
-    font-family: 'Lacquer', sans-serif;
-} */
 
 *:not(input) {
     font-family: 'Lacquer', sans-serif;
 }
 
 h1,h2 {
-    font-family: 'Jaro', sans-serif;
+    font-family: "Special Elite", sans-serif;
 }
