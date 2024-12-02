@@ -16,6 +16,5 @@ if ($product_id > 0 && $quantity > 0) {
     header("Location: /cart.php");
 }
 else{
-    $message = getTranslation("cart-product-add-error", $language_id);
-
+    header("Location:/");
 }

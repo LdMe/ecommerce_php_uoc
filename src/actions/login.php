@@ -27,5 +27,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     $location = $correctUrl . "?" . implode("&", $seachParams);
     header("Location: $location");
 
+}else {
+    header("Location: /login.php");
 }
 

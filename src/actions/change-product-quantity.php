@@ -14,3 +14,6 @@ if ($product_id > 0) {
     $cart->addProduct($product_id, $quantity, true);
     header("Location: /cart.php");
 }
+else{
+    header("Location:/");
+}

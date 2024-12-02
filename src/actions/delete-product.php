@@ -13,3 +13,6 @@ if ($product_id > 0) {
     $cart->deleteProduct($product_id);
     header("Location: /cart.php");
 }
+else {
+    header("Location: /");
+}

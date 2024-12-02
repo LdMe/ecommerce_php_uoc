@@ -33,6 +33,7 @@ $client = $clientModel->getLoggedInClient();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/public/img/favicon.ico">
     <title><?php echo getTranslation("main-page-title", $language_id); ?></title>
     <link rel="stylesheet" href="/public/css/styles.css">
 </head>
@@ -53,7 +54,9 @@ $client = $clientModel->getLoggedInClient();
                     <h2><?php echo $product['name']; ?></h2>
                     <p><?php echo $product['description']; ?></p>
                     <p><?php echo formatPrice($product['price']); ?>€</p>
-                    <a href="/product.php?id=<?php echo $product['product_id']; ?>"><?php echo getTranslation("product-more-info",$language_id); ?></a>
+                    <section class="link-container centered">
+                    <a  href="/product.php?id=<?php echo $product['product_id']; ?>"><?php echo getTranslation("product-more-info",$language_id); ?></a>
+                    </section>
                 </section>
             </article>
             <?php

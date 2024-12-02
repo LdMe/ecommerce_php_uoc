@@ -36,11 +36,15 @@
     width: 23%;
     border-radius: 15px;
     box-sizing: border-box;
-    min-width: 300px;
+    min-width: 250px;
 }
 
 .product-card .product-info {
     padding: 0.5rem;
+    display: flex;
+    flex-direction:column;
+    justify-content: space-between;
+    height: 300px;
 }
 
 .product-card:hover {

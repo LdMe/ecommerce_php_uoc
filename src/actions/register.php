@@ -31,4 +31,6 @@ if (isset($_POST['name']) && isset($_POST['email']) && isset($_POST['password'])
     $seachParams[] = "message-type=success";
     $location = $correctUrl . "?" . implode("&", $seachParams);
     header("Location: $location");
+}else {
+    header("Location: /register.php");
 }

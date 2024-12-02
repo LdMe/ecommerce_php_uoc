@@ -24,4 +24,7 @@
     .form-buttons {
         width: 90%;
     }
+    .product-card .product-info{
+        height: auto;
+    }
 }
